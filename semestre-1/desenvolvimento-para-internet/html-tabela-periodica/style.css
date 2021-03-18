@@ -30,3 +30,34 @@ td p:nth-child(2) {
 td p:nth-child(3) {
   /* font-size: 1.2rem; */
 }
+
+.lime {
+  background-color: #00EE00;
+}
+.orange {
+  background-color: #FEAA00;
+}
+.yellow {
+  background-color: #F3F300;
+}
+.blue-gas {
+  background-color: #64A9FE;
+}
+.blue-hal {
+  background-color: #00DDBB;
+}
+.green {
+  background-color: #53CC86;
+}
+.grey {
+  background-color: #97BAA9;
+}
+.pink {
+ background-color: #FFAA89;
+}
+.purple {
+  background-color: #DDAACC;
+}
+.magenta {
+  background-color: #DB9A9A;
+}
