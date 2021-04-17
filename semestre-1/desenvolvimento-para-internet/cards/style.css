@@ -1,0 +1,29 @@
+body {
+  background-color: rgb(27, 27, 27);
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+h1, h2 {
+  font-size: 3rem;
+  text-transform: uppercase;
+  text-align: center;
+  color: #FFF;
+}
+
+h1 {
+  font-size: 5rem;
+}
+
+h2 {
+  font-size: 3rem;
+  margin: 50px auto 20px;
+}
+
+.card-content p {
+  font-size: 2rem;
+}
+
+.btn {
+  display: block;
+  margin: 20px 0 10px;
+}
