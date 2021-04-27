@@ -1,0 +1,13 @@
+C:\Users\vini_\Documents\MyRepository\atividades-cotuca\semestre-1\tecnicas-de-programacao\orientacao-objetos\orientacao-objetos\bin\Debug\netcoreapp3.1\orientacao-objetos.exe
+C:\Users\vini_\Documents\MyRepository\atividades-cotuca\semestre-1\tecnicas-de-programacao\orientacao-objetos\orientacao-objetos\bin\Debug\netcoreapp3.1\orientacao-objetos.deps.json
+C:\Users\vini_\Documents\MyRepository\atividades-cotuca\semestre-1\tecnicas-de-programacao\orientacao-objetos\orientacao-objetos\bin\Debug\netcoreapp3.1\orientacao-objetos.runtimeconfig.json
+C:\Users\vini_\Documents\MyRepository\atividades-cotuca\semestre-1\tecnicas-de-programacao\orientacao-objetos\orientacao-objetos\bin\Debug\netcoreapp3.1\orientacao-objetos.runtimeconfig.dev.json
+C:\Users\vini_\Documents\MyRepository\atividades-cotuca\semestre-1\tecnicas-de-programacao\orientacao-objetos\orientacao-objetos\bin\Debug\netcoreapp3.1\orientacao-objetos.dll
+C:\Users\vini_\Documents\MyRepository\atividades-cotuca\semestre-1\tecnicas-de-programacao\orientacao-objetos\orientacao-objetos\bin\Debug\netcoreapp3.1\orientacao-objetos.pdb
+C:\Users\vini_\Documents\MyRepository\atividades-cotuca\semestre-1\tecnicas-de-programacao\orientacao-objetos\orientacao-objetos\obj\Debug\netcoreapp3.1\orientacao-objetos.csprojAssemblyReference.cache
+C:\Users\vini_\Documents\MyRepository\atividades-cotuca\semestre-1\tecnicas-de-programacao\orientacao-objetos\orientacao-objetos\obj\Debug\netcoreapp3.1\orientacao-objetos.AssemblyInfoInputs.cache
+C:\Users\vini_\Documents\MyRepository\atividades-cotuca\semestre-1\tecnicas-de-programacao\orientacao-objetos\orientacao-objetos\obj\Debug\netcoreapp3.1\orientacao-objetos.AssemblyInfo.cs
+C:\Users\vini_\Documents\MyRepository\atividades-cotuca\semestre-1\tecnicas-de-programacao\orientacao-objetos\orientacao-objetos\obj\Debug\netcoreapp3.1\orientacao-objetos.csproj.CoreCompileInputs.cache
+C:\Users\vini_\Documents\MyRepository\atividades-cotuca\semestre-1\tecnicas-de-programacao\orientacao-objetos\orientacao-objetos\obj\Debug\netcoreapp3.1\orientacao-objetos.dll
+C:\Users\vini_\Documents\MyRepository\atividades-cotuca\semestre-1\tecnicas-de-programacao\orientacao-objetos\orientacao-objetos\obj\Debug\netcoreapp3.1\orientacao-objetos.pdb
+C:\Users\vini_\Documents\MyRepository\atividades-cotuca\semestre-1\tecnicas-de-programacao\orientacao-objetos\orientacao-objetos\obj\Debug\netcoreapp3.1\orientacao-objetos.genruntimeconfig.cache

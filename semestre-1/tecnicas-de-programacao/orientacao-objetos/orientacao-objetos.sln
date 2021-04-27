@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31112.23
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "orientacao-objetos", "orientacao-objetos\orientacao-objetos.csproj", "{3C749D3D-E50A-4293-B658-54FA90B22847}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C749D3D-E50A-4293-B658-54FA90B22847}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C749D3D-E50A-4293-B658-54FA90B22847}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C749D3D-E50A-4293-B658-54FA90B22847}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C749D3D-E50A-4293-B658-54FA90B22847}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5E8AA3A7-16C3-4F36-A243-7478C5747902}
+	EndGlobalSection
+EndGlobal
