@@ -18,7 +18,6 @@ namespace orientacao_objetos
       meuCarro.marca = "Uno";
       meuCarro.anoFabricacao = 2000;
       meuCarro.desligar();
-      meuCarro.ligar();
 
       Console.WriteLine("Hello " + meuAluno.nome + "!\n");
       Console.WriteLine(meuAluno);
