@@ -15,19 +15,10 @@ namespace Adivinhacao
     {
       this._contagemJogadas = 0;
     }
+
     public void setNumero (int numero)
     {
       this._numero = numero;
-    }
-
-    public int getNumero()
-    {
-      return this._numero;
-    }
-
-    public int getNumeroUsuarioDigitou ()
-    {
-      return this._numeroUsuarioDigitou;
     }
 
     public int getContagemJogadas ()
@@ -39,7 +30,6 @@ namespace Adivinhacao
     {
       return this._dica;
     }
-
 
     public void atualizarContagemJogadas ()
     {
