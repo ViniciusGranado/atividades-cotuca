@@ -1,17 +1,57 @@
+#define botao 2
+
 void setup()
 {
   for (int i = 3; i <= 11; i++)
   {
     pinMode(i, OUTPUT);
   }
-  
-  bool demoMode = true;
-  int demoModeCounter = 0;
+
+  pinMode(botao, INPUT_PULLUP);
+
+  Serial.begin(9600);
 }
 
-void loop()
-{
+bool demoMode = true;
+int demoModeCounter = 49;
+int efeitoSelecionado;
 
+void loop()
+{ 
+  if (demoMode){
+    Serial.println("Ligado");
+  } else {
+    Serial.println("Desligado");
+  }
+  if (demoMode)
+  {
+    Serial.println(demoModeCounter);
+    digitalWrite(11, HIGH);
+    selecionarEfeito(demoModeCounter);
+    demoModeCounter = (((demoModeCounter + 1) - 49) % 5) + 49;
+  } else {
+    digitalWrite(11, LOW);
+
+    // Serial.println("MENU");
+
+    if (Serial.available())
+    {
+      efeitoSelecionado = Serial.read();
+
+      if (efeitoSelecionado >= 49 && efeitoSelecionado <= 53)
+      {
+        Serial.print("Efeito ");
+        Serial.print(efeitoSelecionado - 48);
+        Serial.println(" selecionado.");
+      }
+      else
+      {
+        Serial.println("Opcao invalida.");
+      }
+    }
+
+    selecionarEfeito(efeitoSelecionado);
+  }
 }
 
 void selecionarEfeito(int efeito)
@@ -20,51 +60,51 @@ void selecionarEfeito(int efeito)
 
   switch (efeito)
   {
-  case 0:
-    efeito0();
-    break;
-  case 1:
+  case 49:
     efeito1();
     break;
-  case 2:
+  case 50:
     efeito2();
     break;
-  case 3:
+  case 51:
     efeito3();
     break;
-  case 4:
+  case 52:
     efeito4();
+    break;
+  case 53:
+    efeito5();
     break;
   }
 }
 
-void efeito0()
+void efeito1()
 {
   for (int i = 3; i <= 10; i++)
   {
     digitalWrite(i, HIGH);
     digitalWrite(i - 1, LOW);
-    delay(300);
+    asyncDelay(300);
   }
 }
 
-void efeito1()
+void efeito2()
 {
   for (int i = 0; i < 2; i++)
   {
     for (int j = 0; j < 2; j++)
     {
       acenderTodosLeds();
-      delay(200);
+      asyncDelay(200);
 
       apagarTodosLeds();
-      delay(200);
+      asyncDelay(200);
     }
-    delay(500);
+    asyncDelay(500);
   }
 }
 
-void efeito2()
+void efeito3()
 {
   for (int i = 0; i < 2; i++)
   {
@@ -76,7 +116,7 @@ void efeito2()
     digitalWrite(4, HIGH);
     digitalWrite(5, HIGH);
 
-    delay(300);
+    asyncDelay(300);
 
     digitalWrite(3, LOW);
     digitalWrite(4, LOW);
@@ -86,60 +126,60 @@ void efeito2()
     digitalWrite(8, HIGH);
     digitalWrite(9, HIGH);
 
-    delay(300);
+    asyncDelay(300);
   }
-}
-
-void efeito3()
-{
-  digitalWrite(7, HIGH);
-  delay(500);
-
-  digitalWrite(7, LOW);
-  digitalWrite(3, HIGH);
-  delay(500);
-
-  digitalWrite(3, LOW);
-  digitalWrite(5, HIGH);
-  delay(500);
-
-  digitalWrite(5, LOW);
-  digitalWrite(9, HIGH);
-  delay(500);
 }
 
 void efeito4()
 {
+  digitalWrite(7, HIGH);
+  asyncDelay(500);
+
+  digitalWrite(7, LOW);
+  digitalWrite(3, HIGH);
+  asyncDelay(500);
+
+  digitalWrite(3, LOW);
+  digitalWrite(5, HIGH);
+  asyncDelay(500);
+
+  digitalWrite(5, LOW);
+  digitalWrite(9, HIGH);
+  asyncDelay(500);
+}
+
+void efeito5()
+{
   for (int i = 0; i < 3; i++)
   {
     acenderTodosLeds();
-    delay(200);
+    asyncDelay(200);
     apagarTodosLeds();
-    delay(200);
+    asyncDelay(200);
   }
 
-  delay(200);
+  asyncDelay(200);
 
   for (int i = 0; i < 3; i++)
   {
     acenderTodosLeds();
-    delay(300);
+    asyncDelay(300);
     apagarTodosLeds();
-    delay(300);
+    asyncDelay(300);
   }
 
-  delay(200);
+  asyncDelay(200);
 
   for (int i = 0; i < 3; i++)
   {
     acenderTodosLeds();
-    delay(200);
+    asyncDelay(200);
     apagarTodosLeds();
-    delay(200);
+    asyncDelay(200);
   }
 
   apagarTodosLeds();
-  delay(500);
+  asyncDelay(500);
 }
 
 void acenderTodosLeds ()
@@ -155,5 +195,25 @@ void apagarTodosLeds ()
   for (int i = 3; i <= 10; i++)
   {
     digitalWrite(i, LOW);
+  }
+}
+
+void asyncDelay (unsigned long duracao)
+{
+  unsigned long start = millis();
+
+  while (millis() - start <= duracao)
+  {
+    checkButton();
+  }
+}
+
+void checkButton ()
+{
+  if (digitalRead(botao) == LOW)
+  {
+    Serial.println("Apertou");
+    demoMode = !demoMode;
+    delay(300);
   }
 }
