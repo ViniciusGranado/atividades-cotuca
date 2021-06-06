@@ -1,4 +1,4 @@
-#define botao 2
+#define botao 12
 
 void setup()
 {
@@ -13,26 +13,18 @@ void setup()
 }
 
 bool demoMode = true;
-int demoModeCounter = 49;
+int demoModeCounter = 49; // Char 1 ASCII
 int efeitoSelecionado;
 
 void loop()
 { 
-  if (demoMode){
-    Serial.println("Ligado");
-  } else {
-    Serial.println("Desligado");
-  }
   if (demoMode)
   {
-    Serial.println(demoModeCounter);
     digitalWrite(11, HIGH);
     selecionarEfeito(demoModeCounter);
-    demoModeCounter = (((demoModeCounter + 1) - 49) % 5) + 49;
+    demoModeCounter = (((demoModeCounter + 1) - 49) % 5) + 49; // Loop alteração efeito demoMode
   } else {
     digitalWrite(11, LOW);
-
-    // Serial.println("MENU");
 
     if (Serial.available())
     {
@@ -74,6 +66,8 @@ void selecionarEfeito(int efeito)
     break;
   case 53:
     efeito5();
+    break;
+  default:
     break;
   }
 }
@@ -212,8 +206,30 @@ void checkButton ()
 {
   if (digitalRead(botao) == LOW)
   {
-    Serial.println("Apertou");
     demoMode = !demoMode;
+
+    if (demoMode)
+    {
+      Serial.println("Mode DEMO ligado");
+    }
+    else
+    {
+      Serial.println("Mode DEMO desligado");
+      mostrarMenu();
+    }
     delay(300);
   }
+}
+
+void mostrarMenu() {
+  Serial.println("-------------------------------");
+  Serial.println("              MENU             ");
+  Serial.println("-------------------------------\n");
+
+  Serial.println("Selecione um efeito para exibi-lo:");
+  Serial.println("[1] CAMINHO");
+  Serial.println("[2] FLASH DUPLO");
+  Serial.println("[3] LADO A LADO");
+  Serial.println("[4] CANTOS");
+  Serial.println("[5] SOS");
 }
