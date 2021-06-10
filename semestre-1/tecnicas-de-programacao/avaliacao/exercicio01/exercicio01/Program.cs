@@ -15,14 +15,13 @@ namespace exercicio01
       Console.Write("Digite a sua idade: ");
       idade = Convert.ToInt32(Console.ReadLine());
 
-      Console.Write("\n" + nome);
       if (idade % 2 == 0)
       {
-        Console.WriteLine(" Aceito para o exame.");
+        Console.WriteLine(nome + ", Aceito para o exame.");
       }
       else
       {
-        Console.WriteLine(" Espere a próxima oportunidade.");
+        Console.WriteLine(nome + ", Espere a próxima oportunidade.");
       }
     }
   }
