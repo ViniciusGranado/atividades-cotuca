@@ -1,0 +1,25 @@
+main {
+  margin: 3rem 0;
+}
+
+h1, p {
+  color: #FFF;
+}
+
+.imagem-produto img {
+  border-radius: 5px;
+}
+
+.descricao {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.preco {
+  font-size: 5rem;
+  margin: 1rem 0;
+}
+
+.comprar-btn {
+  margin: 1rem 0;
+}
