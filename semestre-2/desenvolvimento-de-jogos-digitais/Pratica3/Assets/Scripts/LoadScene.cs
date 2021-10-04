@@ -9,6 +9,7 @@ public class LoadScene : MonoBehaviour
 
 	private void OnMouseDown()
 	{
+		Debug.Log($"Ativando a cena {scene}");
 		SceneManager.LoadScene(scene);
 	}
 }
