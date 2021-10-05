@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 01</title>
+  </head>
+
+  <body>
+    <script>
+      class Contador {
+        constructor(linhas) {
+          this.linhas = linhas;
+        }
+
+        printLinhas() {
+          for (let i = 1; i <= this.linhas; i++) {
+            let textoLinha = "";
+
+            const linha = document.createElement('p');
+  
+            for(let j = 0; j < i; j++) {
+              textoLinha += String(i).padStart(2, '0');
+              if (j !== i - 1) textoLinha += " ";
+            }
+
+            linha.innerText = textoLinha;
+            document.body.appendChild(linha);
+          }
+        }
+      }
+
+      construirLinhas = new Contador(10);
+      construirLinhas.printLinhas();
+    </script>
+  </body>
+</html>
