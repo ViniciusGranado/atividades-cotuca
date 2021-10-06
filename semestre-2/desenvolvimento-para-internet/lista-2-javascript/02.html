@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Exercício 02</title>
+  </head>
+
+  <body>
+    <h1>Tente acertar o número de 1 a 9 em 3 tentativas!</h1>
+
+    <button class='btn'>Clique aqui para começar</button>
+
+    <script>
+      const comecaJogo = () => {
+        const numero = Math.floor(Math.random() * 10);
+        let palpite;
+
+        for (let i = 1; i <= 3; i++) {
+          palpite = prompt(`${i}ª tentativa:`);
+
+          if (palpite === String(numero)) {
+            alert("Parabéns, você acertou!");
+            return;
+          }
+        }
+
+        alert("Que pena, você não acertou!");
+      };
+
+      const botao = document.querySelector('.btn');
+      botao.addEventListener('click', comecaJogo);
+    </script>
+  </body>
+</html>
