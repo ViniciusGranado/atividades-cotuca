@@ -23,6 +23,13 @@ public class Arma : MonoBehaviour
         {
             Atirar();
         }
+
+        if (Input.GetButtonDown("Fire2"))
+        {
+            Invoke("Atirar", 0.2f);
+            Invoke("Atirar", 0.4f);
+            Invoke("Atirar", 0.6f);
+        }
     }
 
     void Atirar()
