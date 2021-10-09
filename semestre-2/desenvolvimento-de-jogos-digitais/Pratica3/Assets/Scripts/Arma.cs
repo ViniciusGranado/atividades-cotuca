@@ -41,10 +41,12 @@ public class Arma : MonoBehaviour
 
             if (atirador.transform.localScale.x < 0f)
             {
+                Debug.Log(atirador.transform.localScale.x);
                 balaComponente.direcao = Vector2.left;
             }
             else
             {
+                Debug.Log(atirador.transform.localScale.x);
                 balaComponente.direcao = Vector2.right;
             }
         }
