@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercício 03</title>
+
+    <script src="jquery-3.6.0.min.js"></script>
+
+    <script>
+      $(document).ready(() => {
+        let selectedColor = 0;
+        const mudaCor = () => {
+          const colors = ['#F00', '#0F0'];
+
+          $('.cabecalho').css('color', colors[selectedColor % colors.length]);
+          selectedColor++;
+        };
+
+        mudaCor();
+
+        $('.btn').click(mudaCor);
+      });
+
+    </script>
+  </head>
+
+  <body>
+    <h1 class='cabecalho' style=>Cabeçalho muda de cor</h1>
+
+    <button class='btn'>Muda Cor</button>
+  </body>
+</html>
