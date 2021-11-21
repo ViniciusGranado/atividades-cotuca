@@ -2,7 +2,7 @@ CREATE DATABASE Loja;
 --DROP DATABASE Loja;
 GO
 
-
+USE Loja;
 
 create table cliente (
 	id int not null identity(1,1) PRIMARY KEY,

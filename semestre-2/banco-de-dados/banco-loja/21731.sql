@@ -73,8 +73,24 @@ ON pedido.id_cli = cliente.id
 GROUP BY cliente.id, cliente.nome
 
 -- 11
+CREATE TRIGGER updateProduto ON produto
+AFTER UPDATE AS
+	SET NOCOUNT ON
+	IF (((SELECT COUNT(*) FROM deleted) > 1) AND ((SELECT COUNT(*) FROM deleted) > 1 ))
+	BEGIN
+		PRINT 'Não é permitido alterar vários produtos de uma vez.';
+		ROLLBACK TRAN;
+		RETURN;
+	END
 
--- 12
+	IF (EXISTS (SELECT * FROM itempedido WHERE id_prod = (SELECT id FROM deleted)))
+	BEGIN
+		PRINT('Não é permitido alterar produtos que já foram pedidos.');
+		ROLLBACK TRAN;
+		RETURN;
+	END
+
+	PRINT 'Update realizado com sucesso';
 
 -- 13
 CREATE PROCEDURE cadastraAtualizaCliente (
