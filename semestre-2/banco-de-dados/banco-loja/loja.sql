@@ -22,8 +22,6 @@ INSERT INTO cliente VALUES('Nikol Lameira Teles', 'Campinas', getdate());
 INSERT INTO cliente VALUES('Vanessa Carvalhosa Vergueiro', 'Paulínia', getdate());
 INSERT INTO cliente VALUES('Michele Sanches Cambezes', 'Cosmópolis', getdate());
 
-SELECT * FROM cliente;
-
 create table pedido (
 	id int not null identity(1,1) PRIMARY KEY,
 	id_cli int not null,
@@ -51,8 +49,6 @@ INSERT INTO pedido VALUES (2, getdate());
 INSERT INTO pedido VALUES (4, getdate());
 INSERT INTO pedido VALUES (7, getdate());
 
-SELECT * FROM pedido;
-
 create table produto (
 	id int not null identity(1,1) PRIMARY KEY,
 	nome varchar(30),
@@ -71,8 +67,6 @@ INSERT INTO produto VALUES ('Prato', 'Prato', getdate(), 22.99, 13);
 INSERT INTO produto VALUES ('Fone de Ouvido', 'Fone de Ouvido', getdate(), 89.99, 5);
 INSERT INTO produto VALUES ('Mouse', 'Mouse', getdate(), 22.35, 8);
 INSERT INTO produto VALUES ('Colher', 'Colher', getdate(), 0.99, 16);
-
-SELECT * FROM produto;
 
 create table itempedido (
 	id int not null identity(1,1) PRIMARY KEY,

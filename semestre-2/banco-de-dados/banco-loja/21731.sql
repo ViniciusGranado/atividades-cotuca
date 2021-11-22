@@ -46,10 +46,8 @@ WHERE valorTotalPedido = (
 );
 
 -- 7
-SELECT cliente.id, cliente.nome, COUNT(cliente.id) AS totalPedidos FROM pedido
-INNER JOIN cliente
-ON pedido.id_cli = cliente.id
-GROUP BY cliente.id, cliente.nome
+SELECT id_cli AS idCliente, COUNT(id_cli) AS totalPedidos from pedido
+GROUP BY id_cli;
 
 -- 8
 SELECT id_ped AS idPedido, SUM(qtd * valor) AS valorTotalPedido FROM itempedido
@@ -75,7 +73,6 @@ GROUP BY cliente.id, cliente.nome
 -- 11
 CREATE TRIGGER updateProduto ON produto
 AFTER UPDATE AS
-	SET NOCOUNT ON
 	IF (((SELECT COUNT(*) FROM deleted) > 1) AND ((SELECT COUNT(*) FROM deleted) > 1 ))
 	BEGIN
 		PRINT 'Não é permitido alterar vários produtos de uma vez.';
@@ -91,6 +88,38 @@ AFTER UPDATE AS
 	END
 
 	PRINT 'Update realizado com sucesso';
+
+-- 12
+DROP TRIGGER deletarClienteComPedidos;
+GO
+CREATE TRIGGER deletarClienteComPedidos ON cliente
+AFTER DELETE AS
+	DECLARE @idClienteDeletado INT;
+
+	DECLARE cr_deleted CURSOR FOR
+		SELECT id FROM deleted;
+
+	OPEN cr_deleted;
+
+	FETCH NEXT FROM cr_deleted 
+	INTO @idClienteDeletado
+
+	WHILE @@FETCH_STATUS <> -1
+	BEGIN
+		
+		DELETE FROM itempedido WHERE id_ped IN (
+			SELECT id FROM PEDIDO WHERE id_cli = @idClienteDeletado
+		)
+
+		DELETE FROM pedido
+		WHERE id_cli = @idClienteDeletado;
+
+		FETCH NEXT FROM cr_deleted 
+		INTO @idClienteDeletado
+	END
+
+	CLOSE cr_deleted;
+	DEALLOCATE cr_deleted;
 
 -- 13
 CREATE PROCEDURE cadastraAtualizaCliente (
