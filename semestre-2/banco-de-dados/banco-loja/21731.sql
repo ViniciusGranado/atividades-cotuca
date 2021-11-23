@@ -3,18 +3,18 @@
 -- RA: 21731
 
 -- 1
-SELECT pedido.id_cli, cliente.nome FROM pedido
-INNER JOIN cliente
-ON pedido.id_cli = cliente.id
-GROUP BY id_cli, cliente.nome
+SELECT cliente.id as idCliente, cliente.nome AS nomeCliente FROM cliente
+LEFT JOIN pedido
+ON cliente.id = pedido.id_cli
+GROUP BY cliente.id, cliente.nome
 HAVING COUNT(pedido.id_cli) = 0;
 
 -- 2
-SELECT produto.id, produto.nome FROM itempedido
-INNER JOIN produto
-ON itempedido.id_prod = produto.id
+SELECT produto.id, produto.nome FROM produto
+LEFT JOIN itempedido
+ON produto.id = itempedido.id_prod
 GROUP BY produto.id, produto.nome
-HAVING COUNT(produto.id) = 0;
+HAVING COUNT(itempedido.id_prod) = 0;
 
 -- 3
 SELECT id_ped, COUNT(id_prod) AS totalItensPedido FROM itempedido
@@ -45,24 +45,29 @@ WHERE valorTotalPedido = (
 	SELECT MAX(valorTotalPedido) from valorTotalPorPedido
 );
 
+DROP VIEW valorTotalPorPedido;
+
 -- 7
 SELECT id_cli AS idCliente, COUNT(id_cli) AS totalPedidos from pedido
 GROUP BY id_cli;
 
 -- 8
 SELECT id_ped AS idPedido, SUM(qtd * valor) AS valorTotalPedido FROM itempedido
-GROUP BY id_ped
+GROUP BY id_ped;
 
 -- 9
-SELECT valorTotalPorPedido.idPedido, valorTotalPorPedido.valorTotalPedido from (
-	SELECT id_ped AS idPedido, SUM(qtd * valor) AS valorTotalPedido FROM itempedido
-	GROUP BY id_ped
-) AS valorTotalPorPedido
+CREATE VIEW valorTotalPorPedido AS
+SELECT id_ped AS idPedido, SUM(qtd * valor) AS valorTotalPedido FROM itempedido
+GROUP BY id_ped
+
+SELECT idPedido, valorTotalPedido FROM valorTotalPorPedido
 WHERE (valorTotalPedido = (
 	SELECT MAX(valorTotalPedido) from valorTotalPorPedido
 )) OR (valorTotalPedido = (
 	SELECT MIN(valorTotalPedido) from valorTotalPorPedido
 ));
+
+DROP VIEW valorTotalPorPedido;
 
 -- 10
 SELECT cliente.id, cliente.nome, COUNT(cliente.id) AS totalPedidos FROM pedido
@@ -90,8 +95,6 @@ AFTER UPDATE AS
 	PRINT 'Update realizado com sucesso';
 
 -- 12
-DROP TRIGGER deletarClienteComPedidos;
-GO
 CREATE TRIGGER deletarClienteComPedidos ON cliente
 AFTER DELETE AS
 	DECLARE @idClienteDeletado INT;
