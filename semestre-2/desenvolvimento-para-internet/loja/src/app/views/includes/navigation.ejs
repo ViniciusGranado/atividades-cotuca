@@ -10,18 +10,10 @@
           <a class="nav-link <%= path === '/' ? 'active' : ''%>" aria-current="page" href="/home">Home</a>
         </li>
 
-        <% if (logged) { %> 
-          <li class="nav-item">
-            <a class="nav-link <%= path === '/products' ? 'active' : ''%>" aria-current="page" href="/products">Produtos</a>
-          </li>
-
-          <li class="nav-item">
-            <a class="nav-link <%= path === '/cart' ? 'active' : ''%>" aria-current="page" href="/cart">Carrinho</a>
-          </li>
+        <% if (logged === 'true') { %> 
+          <%- include('./logged-navigation-items.ejs') %>
         <% } else { %> 
-          <li class="nav-item">
-            <a class="nav-link <%= path === '/sign-up' ? 'active' : ''%>" aria-current="page" href="/sign-up">Cadastro</a>
-          </li>
+          <%- include('./not-logged-navigation-items.ejs') %>
         <% } %> 
       </ul>
     </div>

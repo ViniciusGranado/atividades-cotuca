@@ -4,7 +4,7 @@ module.exports.getSignUp = (req, res) => {
   res.render('sign-up', {
     pageTitle: 'Cadastro',
     path: '/sign-up',
-    logged: req.query.logged,
+    logged: req.cookies.logged,
   });
 };
 
@@ -20,7 +20,8 @@ module.exports.postSignUp = (req, res) => {
   user
     .save()
     .then(() => {
-      res.redirect('/home?logged=true');
+      res.cookie('logged', true);
+      res.redirect('/home');
     })
     .catch((err) => {
       console.log(err);
@@ -31,7 +32,8 @@ module.exports.postLogin = (req, res) => {
   User.getUserByEmail(req.body.email)
     .then(([user]) => {
       if (user[0] && user[0].password === req.body.password) {
-        res.redirect('/home?logged=true');
+        res.cookie('logged', true);
+        res.redirect('/home');
       } else {
         res.redirect('/home');
       }
@@ -39,4 +41,9 @@ module.exports.postLogin = (req, res) => {
     .catch((err) => {
       console.log(err);
     });
+};
+
+module.exports.getLogout = (req, res) => {
+  res.clearCookie('logged');
+  res.redirect('/home');
 };
