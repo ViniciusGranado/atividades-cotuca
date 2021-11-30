@@ -17,11 +17,14 @@ module.exports.postSignUp = (req, res) => {
     req.body.password
   );
 
-  user
-    .save()
+  user.save()
     .then(() => {
-      res.cookie('logged', true);
-      res.redirect('/home');
+      User.getUserByEmail(req.body.email)
+        .then(([newUser]) => {
+          res.cookie('logged', true);
+          res.cookie('userId', newUser[0].id);
+          res.redirect('/home');
+        })
     })
     .catch((err) => {
       console.log(err);
@@ -33,6 +36,7 @@ module.exports.postLogin = (req, res) => {
     .then(([user]) => {
       if (user[0] && user[0].password === req.body.password) {
         res.cookie('logged', true);
+        res.cookie('userId', user[0].id);
         res.redirect('/home');
       } else {
         res.redirect('/home');
@@ -45,5 +49,6 @@ module.exports.postLogin = (req, res) => {
 
 module.exports.getLogout = (req, res) => {
   res.clearCookie('logged');
+  res.clearCookie('userId');
   res.redirect('/home');
 };

@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row row-cols-3">
+    <% products.forEach((product) => { %> 
+      <div class="col">
+        <div class="card mb-5" style="width: 18rem;">
+          <img src="<%= product.imageUrl %>" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title"><%= product.title %></h5>
+            <p class="card-text"><%= product.description %></p>
+            <h5 class="card-title">R$<%= product.price %></h5>
+            <a href="/add-to-cart/<%= product.id %>" class="btn btn-primary mb-3">Adicionar ao carrinho</a>
+            <a href="/product/<%= product.id %>" class="btn btn-primary">Visualizar produto</a>
+          </div>
+        </div>
+      </div>
+    <% }); %>
+  <div></div>
+</div>

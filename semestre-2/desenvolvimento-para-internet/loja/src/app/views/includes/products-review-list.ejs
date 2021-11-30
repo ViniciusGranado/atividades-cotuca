@@ -1,0 +1,14 @@
+<ol class="list-group mx-auto mb-5">
+  <% products.forEach((product) => { %> 
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+      <div class="ms-2 me-auto">
+        <div class="fw-bold"><%= product.title %></div>
+        R$<%= product.price %> 
+      </div>
+      <div class='d-flex align-items-center'>
+        <p class='my-0 me-2'>Quantidade:</p>
+        <span class="badge bg-primary rounded-pill"><%= product.qty %></span>
+      </div>
+    </li>
+  <% }) %> 
+</ol>

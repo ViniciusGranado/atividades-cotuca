@@ -1,0 +1,38 @@
+<div class="list-group mx-auto">
+  <form action="/cart" method="POST">
+    <% products.forEach((product) => { %> 
+    <div class="list-group-item list-group-item-action active mb-5" aria-current="true">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">
+          <%= product.title %>
+          <span class="price">
+            R$<%= product.price %>
+          </span>
+        </h5>
+        <img src="<%= product.imageUrl %>" alt="<%= product.title %>">
+      </div>
+      <p class="mb-1 fs-2"></p>
+
+      
+      <div class="d-flex w-100 justify-content-between align-items-center">
+        <div>
+          <label for="qty">Quantidade:</label>
+          <input type="number" name="qty" id="qty" value='1' step="1" min="1"> 
+          <input type="hidden" name="id" value='<%= product.id %>'>
+        </div>
+
+        <a href='/remove-from-cart/<%= product.id %>' class='btn btn-danger'>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <% }); %>
+
+    <div class="btn-container">
+      <button type="button" class="btn btn-primary btn-lg mx-auto d-block"><a href="/products">Continuar Comprando</a></button>
+      <button type="submit" class="btn btn-primary btn-lg mx-auto d-block">Finalizar Compra</button>
+    </div>
+  </form>
+</div>
