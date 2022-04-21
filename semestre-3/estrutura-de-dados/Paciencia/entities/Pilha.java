@@ -1,3 +1,5 @@
+package entities;
+
 public class Pilha {
   protected Carta[] cartas;
   protected int topo;
@@ -26,7 +28,7 @@ public class Pilha {
 
   public Carta desempilhar() throws Exception {
     if (estaVazia()) {
-      throw new Exception("Pilha vazia");
+      throw new Exception("entities.Pilha vazia");
     }
 
     topo--;
@@ -47,5 +49,16 @@ public class Pilha {
 
   public boolean estaVazia() throws Exception {
     return topo == -1;
+  }
+
+  @Override
+  public String toString() {
+    String ret = "";
+
+    for (Carta carta : cartas) {
+      ret += carta + ": " + carta.isEstaVirada() + "\n";
+    }
+
+    return ret;
   }
 }
