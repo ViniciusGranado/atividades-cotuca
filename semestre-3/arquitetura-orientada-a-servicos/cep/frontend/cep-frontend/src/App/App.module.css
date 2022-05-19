@@ -1,0 +1,10 @@
+.App {
+  background-color: #F1F2EE;
+  min-height: 100vh;
+}
+
+.content {
+  margin: 0 auto;
+  max-width: 75rem;
+  padding: 1rem 6rem;
+}
