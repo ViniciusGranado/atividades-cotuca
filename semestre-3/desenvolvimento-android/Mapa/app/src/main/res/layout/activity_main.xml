@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnSelecionaBola"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SELECIONA BOLA" />
+
+        <Button
+            android:id="@+id/btnSelecionaQuadrado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SELECIONA QUADRADO" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnSelecionaLinha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SELECIONA LINHA" />
+
+        <Button
+            android:id="@+id/btnSelecionaOval"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SELECIONA OVAL" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/main_view"
+        android:layout_width="match_parent"
+        android:layout_height="458dp"
+        tools:context=".MainActivity">
+
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/btnMudaCor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MUDA COR" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnDeletaBola"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DELETA BOLA" />
+
+        <Button
+            android:id="@+id/btnDeletaOval"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DELETA OVAL" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/btnDeletaLinha"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DELETA LINHA" />
+
+        <Button
+            android:id="@+id/btnDeletaQuadrado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DELETA QUADRADO" />
+
+    </LinearLayout>
+
+</LinearLayout>
