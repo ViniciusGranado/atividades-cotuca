@@ -46,6 +46,13 @@ public class UserResource {
         return ResponseEntity.created(uri).body(obj);
     }
 
+    @PatchMapping
+    public ResponseEntity<User> update(@RequestBody User newUser) {
+        User obj = userService.insert(new User(newUser.getId(), newUser.getName(), newUser.getAge(), newUser.getCep(), newUser.getNumber()));
+
+        return ResponseEntity.ok().body(obj);
+    }
+
     @DeleteMapping
     public ResponseEntity<User> delete(@RequestBody User deletedUser) {
         userService.delete(deletedUser);
