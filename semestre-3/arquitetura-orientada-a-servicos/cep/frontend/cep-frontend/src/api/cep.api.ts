@@ -23,8 +23,13 @@ export const cepApi = {
   getUser: (id: string) => request(`users/${id}`),
   deleteUser: (userDto: User) => request(`users`, {method: 'DELETE', body: JSON.stringify(userDto),}),
   newUser: (newUserDto: NewUserDto) =>
-  request('users', {
-    method: 'POST',
-    body: JSON.stringify(newUserDto),
+    request('users', {
+      method: 'POST',
+      body: JSON.stringify(newUserDto),
+  }),
+  updateUser: (userDto: User) =>
+    request('users', {
+      method: 'PATCH',
+      body: JSON.stringify(userDto),
   }),
 }

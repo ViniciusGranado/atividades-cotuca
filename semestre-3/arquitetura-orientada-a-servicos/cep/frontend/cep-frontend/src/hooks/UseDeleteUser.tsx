@@ -4,7 +4,7 @@ import { User } from '../models/models';
 import { useMutation } from 'react-query';
 
 const initialUserDto: User = {
-  id: 0,
+  id: '',
   name: '',
   age: '',
   cep: '',

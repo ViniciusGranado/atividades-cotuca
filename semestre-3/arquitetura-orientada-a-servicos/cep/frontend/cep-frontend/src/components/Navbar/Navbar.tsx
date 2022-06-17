@@ -24,6 +24,7 @@ export const Navbar = () => {
       >
         <Tab label='Home' onClick={() => navigate(`/`)} />
         <Tab label='Cadastrar Usuario' onClick={() => navigate(`/new-user`)} />
+        <Tab label='Atualizar Usuario' onClick={() => navigate(`/update-user`)} />
       </Tabs>
     </Box>
   );

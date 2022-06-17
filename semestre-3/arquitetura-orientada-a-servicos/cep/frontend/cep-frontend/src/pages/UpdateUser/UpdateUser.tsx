@@ -1,26 +1,24 @@
 import {
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
   Box,
+  FormControl,
   TextField,
   AlertColor,
   CircularProgress,
+  InputLabel,
+  MenuItem,
+  Select,
   SelectChangeEvent,
-  Button,
 } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { LoadingButton } from '@mui/lab';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { AlertDialog } from '../../components/AlertDialog/AlertDialog';
-import { UseGetAllUsers } from '../../hooks/UseGetAllUsers';
+
+import styles from './UpdateUser.module.css';
 import { UseGetUserById } from '../../hooks/UseGetUserById';
-import { UseDeleteUserHook } from '../../hooks/UseDeleteUser';
+import { UseGetAllUsers } from '../../hooks/UseGetAllUsers';
 import { UseUpdateUserHook } from '../../hooks/UseUpdateUserHook';
-import { UserAddress } from '../../models/models';
 
-import styles from './Home.module.css';
-
-export const Home = () => {
+export const UpdateUser = () => {
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [alertSeverity, setAlertSeverity] = useState<AlertColor | undefined>(
     undefined
@@ -31,14 +29,6 @@ export const Home = () => {
     UseGetAllUsers();
 
   const {
-    deleteUser,
-    setUserDto,
-    isDeleteUserError,
-    isDeleteUserLoading,
-    isDeleteUserSuccess,
-  } = UseDeleteUserHook();
-
-  const {
     user,
     selectedId,
     setSelectedId,
@@ -47,29 +37,45 @@ export const Home = () => {
     isGetUserLoading,
   } = UseGetUserById();
 
-  useEffect(() => {
-    if (isGetUserSuccess && user) {
-      setUserDto(user.user);
-    }
-  }, [isGetUserSuccess, setUserDto, user]);
+  const {
+    updateUser,
+    updateUserDto,
+    isUpdateUserSuccess,
+    isUpdateUserError,
+    isUpdateUserLoading,
+    setUpdateUserDto,
+  } = UseUpdateUserHook();
 
   useEffect(() => {
-    if (isGetUsersError || isDeleteUserError || isGetUserError) {
+    if (isGetUserSuccess && user) {
+      setUpdateUserDto(user.user);
+    }
+  }, [isGetUserSuccess, setUpdateUserDto, user]);
+
+  useEffect(() => {
+    if (isUpdateUserSuccess) {
+      setAlertSeverity('success');
+      setAlertTitle('User updated!');
+      handleOpenAlert();
+      refetchGetUsers();
+    }
+  }, [isUpdateUserSuccess, refetchGetUsers]);
+
+  useEffect(() => {
+    if (isUpdateUserError) {
+      setAlertSeverity('error');
+      setAlertTitle('The User was not updated. Please try again.');
+      handleOpenAlert();
+    }
+  }, [isUpdateUserError]);
+
+  useEffect(() => {
+    if (isGetUsersError || isGetUserError) {
       setAlertSeverity('error');
       setAlertTitle('An error occured. Please try again.');
       handleOpenAlert();
     }
-  }, [isGetUsersError, isGetUserError, isDeleteUserError]);
-
-  useEffect(() => {
-    if (isDeleteUserSuccess) {
-      setAlertSeverity('success');
-      setAlertTitle('User deleted!');
-      handleOpenAlert();
-      setSelectedId(0);
-      refetchGetUsers();
-    }
-  }, [isDeleteUserSuccess, refetchGetUsers, setSelectedId]);
+  }, [isGetUsersError, isGetUserError]);
 
   const handleOpenAlert = () => {
     setIsAlertOpen(true);
@@ -83,11 +89,17 @@ export const Home = () => {
     setSelectedId(+event.target.value);
   };
 
-  const getAddres = (user: UserAddress) => {
-    return `${user.adress.logradouro} Nº ${user.user.number}\n${user.adress.bairro}\n${user.adress.cidade}/${user.adress.estado}`;
+  const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setUpdateUserDto((prev) => {
+      const stateCopy = { ...prev };
+
+      stateCopy[event.target.name] = event.target.value;
+
+      return stateCopy;
+    });
   };
 
-  if (isGetUsersLoading || isDeleteUserLoading) {
+  if (isGetUsersLoading) {
     return <CircularProgress />;
   }
 
@@ -103,7 +115,7 @@ export const Home = () => {
         alignItems: 'center',
         gap: '2rem',
       }}
-      className={styles.Home}
+      className={styles.UpdateUser}
     >
       <FormControl fullWidth>
         <InputLabel id='demo-simple-select-label'>Usuário</InputLabel>
@@ -114,7 +126,9 @@ export const Home = () => {
           label='Usuário'
           onChange={handleChangeUser}
         >
-          <MenuItem value={0}>Selecione o usuário para ver seus dados</MenuItem>
+          <MenuItem value={0}>
+            Selecione o usuário para atualizar seus dados
+          </MenuItem>
           {users.map((user) => (
             <MenuItem value={user.id} key={user.id}>
               {user.name}
@@ -123,15 +137,15 @@ export const Home = () => {
         </Select>
       </FormControl>
 
-      {isGetUserLoading && <CircularProgress />}
+      {(isUpdateUserLoading || isGetUserLoading) && <CircularProgress />}
       {selectedId !== 0 && user && (
         <>
           <FormControl fullWidth>
             <TextField
               label='Nome'
               name='name'
-              value={user.user.name}
-              inputProps={{ readOnly: true }}
+              onChange={onChange}
+              value={updateUserDto.name}
             />
           </FormControl>
 
@@ -139,8 +153,8 @@ export const Home = () => {
             <TextField
               label='Idade'
               name='age'
-              value={user.user.age}
-              inputProps={{ readOnly: true }}
+              onChange={onChange}
+              value={updateUserDto.age}
             />
           </FormControl>
 
@@ -148,27 +162,28 @@ export const Home = () => {
             <TextField
               label='CEP'
               name='cep'
-              value={user.user.cep}
-              inputProps={{ readOnly: true }}
+              onChange={onChange}
+              value={updateUserDto.cep}
             />
           </FormControl>
 
           <FormControl fullWidth>
             <TextField
-              label='Endereço'
-              name='adress'
-              value={getAddres(user)}
-              multiline
-              minRows={3}
-              inputProps={{ readOnly: true }}
+              label='Número'
+              name='number'
+              onChange={onChange}
+              value={updateUserDto.number}
             />
           </FormControl>
 
-          <Box display='flex' justifyContent='space-between' width='100%'>
-            <Button variant='contained' onClick={() => deleteUser()}>
-              DELETAR USUÁRIO
-            </Button>
-          </Box>
+          <LoadingButton
+            variant='contained'
+            sx={{ padding: '0.625rem 5rem' }}
+            onClick={() => updateUser()}
+            loading={isUpdateUserLoading}
+          >
+            Atualizar
+          </LoadingButton>
         </>
       )}
 

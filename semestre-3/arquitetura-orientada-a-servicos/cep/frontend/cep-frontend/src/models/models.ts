@@ -6,7 +6,7 @@ export interface NewUserDto {
 }
 
 export interface User {
-  id: number;
+  [id: string]: string;
   name: string;
   age: string;
   cep: string;
