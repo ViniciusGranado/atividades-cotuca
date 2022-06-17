@@ -45,4 +45,11 @@ public class UserResource {
 
         return ResponseEntity.created(uri).body(obj);
     }
+
+    @DeleteMapping
+    public ResponseEntity<User> delete(@RequestBody User deletedUser) {
+        userService.delete(deletedUser);
+
+        return ResponseEntity.ok().body(deletedUser);
+    }
 }
