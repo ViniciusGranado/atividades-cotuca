@@ -1,4 +1,4 @@
-import { NewUserDto } from '../models/models';
+import { NewUserDto, User } from '../models/models';
 
 const request = (
   path: RequestInfo,
@@ -21,6 +21,7 @@ const request = (
 export const cepApi = {
   getAllUsers: () => request(`users`),
   getUser: (id: string) => request(`users/${id}`),
+  deleteUser: (userDto: User) => request(`users`, {method: 'DELETE', body: JSON.stringify(userDto),}),
   newUser: (newUserDto: NewUserDto) =>
   request('users', {
     method: 'POST',

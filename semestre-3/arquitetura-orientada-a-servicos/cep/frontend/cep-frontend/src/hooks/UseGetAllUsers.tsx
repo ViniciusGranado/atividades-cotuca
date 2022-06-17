@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { cepApi } from '../api/cep.api';
 import { User } from '../models/models';
 import { useQuery } from 'react-query';
@@ -9,6 +8,7 @@ export const UseGetAllUsers = () => {
     isSuccess: isGetUsersSuccess,
     isLoading: isGetUsersLoading,
     isError: isGetUsersError,
+    refetch: refetchGetUsers,
   } = useQuery<User[]>('users', cepApi.getAllUsers());
 
   return {
@@ -16,5 +16,6 @@ export const UseGetAllUsers = () => {
     isGetUsersSuccess,
     isGetUsersLoading,
     isGetUsersError,
+    refetchGetUsers,
   };
 };
