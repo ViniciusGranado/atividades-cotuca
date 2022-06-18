@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Button btnDeletaQuadrado;
     private Button btnDeletaOval;
     private Button btnDeletaLinha;
-    private Figura figuraSelecionada = Figura.OVAL;
+    private Figura figuraSelecionada = Figura.BOLA;
     private int corSelecionada = getRandomColor();
 
     @Override
@@ -155,19 +155,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public Bola criarBola(MotionEvent event) {
-        return new Bola(this, event.getX(), event.getY(), 40, corSelecionada);
+        return new Bola(this, event.getX(), event.getY() - 500, 40, corSelecionada);
     }
 
     public Quadrado criarQuadrado(MotionEvent event) {
-        return new Quadrado(this, event.getX(), event.getY(), event.getX() + 100, event.getY() + 100, corSelecionada);
+        return new Quadrado(this, event.getX(), event.getY() - 500, event.getX() + 100, event.getY() - 400, corSelecionada);
     }
 
     public Oval criarOval(MotionEvent event) {
-        return new Oval(this, event.getX(), event.getY(), event.getX() + 100, event.getY() + 200, corSelecionada);
+        return new Oval(this, event.getX() - 100, event.getY() - 500, event.getX() + 50, event.getY() + 100, corSelecionada);
     }
 
     public Linha criarLinha(MotionEvent event) {
-        return new Linha(this, event.getX() + 500, event.getY(), event.getX() + 500, event.getY() + 500, corSelecionada);
+        return new Linha(this, event.getX(), event.getY() - 500, event.getX(), event.getY(), corSelecionada);
     }
 
     public int getRandomColor(){

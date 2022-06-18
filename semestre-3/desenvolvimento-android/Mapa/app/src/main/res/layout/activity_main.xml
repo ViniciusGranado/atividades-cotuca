@@ -46,7 +46,7 @@
     <FrameLayout
         android:id="@+id/main_view"
         android:layout_width="match_parent"
-        android:layout_height="458dp"
+        android:layout_height="471dp"
         tools:context=".MainActivity">
 
     </FrameLayout>
@@ -76,11 +76,12 @@
             android:layout_height="wrap_content"
             android:text="DELETA BOLA" />
 
+
         <Button
-            android:id="@+id/btnDeletaOval"
+            android:id="@+id/btnDeletaQuadrado"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="DELETA OVAL" />
+            android:text="DELETA QUADRADO" />
 
     </LinearLayout>
 
@@ -97,10 +98,10 @@
             android:text="DELETA LINHA" />
 
         <Button
-            android:id="@+id/btnDeletaQuadrado"
+            android:id="@+id/btnDeletaOval"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="DELETA QUADRADO" />
+            android:text="DELETA OVAL" />
 
     </LinearLayout>
 
