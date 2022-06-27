@@ -40,7 +40,7 @@ module.exports.getUserById = async (req, res) => {
 	}
 
 	const queryResult = result.rows[0];
-	let adressResult = await axios.get(`http://localhost:8081/${queryResult.cep}`).then((res) => res.data);
+	let adressResult = await axios.get(`https://api.postmon.com.br/v1/cep/${queryResult.cep}`).then((res) => res.data);
 
 	if (adressResult === undefined) {
 		const error = new Comunicado('EBE', 'Erro ao buscar endereço', 'Não foi encontrar o endereço do usuário solicitado.');
