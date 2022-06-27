@@ -10,3 +10,5 @@ router.get(`${baseUrl}/:id`, userController.getUserById);
 router.post(baseUrl, userController.insert);
 router.patch(baseUrl, userController.update);
 router.delete(baseUrl, userController.delete);
+
+module.exports = router;

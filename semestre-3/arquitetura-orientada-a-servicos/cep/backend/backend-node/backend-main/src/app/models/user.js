@@ -1,30 +1,72 @@
 const database = require('../../config/database');
 
 module.exports = class User {
-    constructor(id, name, age, cep, number) {
-        this.id = id;
-        this.name = name;
-        this.age = age;
-        this.cep = cep;
-        this.number = number;
+  id;
+  name;
+  age;
+  cep;
+  number;
+
+  constructor(id, name, age, cep, number) {
+    this.id = id;
+    this.name = name;
+    this.age = age;
+    this.cep = cep;
+    this.number = number;
+  }
+
+  get id() {
+    return this.id;
+  }
+
+  set id(id) {
+    if (id === undefined || typeof id !== 'number' || isNaN(id) || id !== parseInt(id) || id <= 0) {
+        
     }
+    this.id = id;
+  }
 
-    save() {
-        return database.execute(
-					'INSERT INTO user (name, age, cep, number) VALUES (?, ?, ?, ?)',
-					[this.name, this.cpf, this.email, this.password]
-        );
-    };
+  get name() {
+    return this.name;
+  }
 
-		static getUsers() {
-			return database.execute('SELECT * FROM user');
-		}
+  set name(name) {
+    if (name === undefined || typeof name !== 'string') {
+      throw new Error('Nome inválido');
+    }
+    this.name = name;
+  }
 
-		static getUserById(id) {
-			return database.execute('SELECT * FROM user WHERE id = ?', [id]);
-		}
+  get age() {
+    return this.age;
+  }
 
-		static updateUser() {
-			return database.execute('UPDATE user SET name = ?, age = ?, cep = ?, number = ? WHERE id = ?', [this.id]);
-		}
+  set age(age) {
+    if (age === undefined || typeof age !== 'string') {
+      throw new Error('Idade inválida');
+    }
+    this.age = age;
+  }
+
+  get cep() {
+    return this.cep;
+  }
+
+  set cep(cep) {
+    if (cep === undefined || typeof cep !== 'string') {
+      throw new Error('Cep inválido');
+    }
+    this.cep = cep;
+  }
+
+  get number() {
+    return this.number;
+  }
+
+  set number(number) {
+    if (number === undefined || typeof number !== 'string') {
+      throw new Error('Número inválido');
+    }
+    this.number = number;
+  }    
 }
