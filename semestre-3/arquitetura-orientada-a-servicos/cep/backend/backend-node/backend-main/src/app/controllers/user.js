@@ -10,7 +10,7 @@ module.exports.getUsers = async (req, res) => {
 	const connection = db.getConnection();
 	const sql = 'SELECT * FROM tb_user';
 
-	const result = await connection.query(sql)
+	const result = await connection.query(sql);
 
 	if (result === undefined) {
 		const error = new Comunicado('CBD', 'Sem conexão com o banco de dados', 'Não foi possível estabelecer comunição com o banco de dados.');
@@ -127,7 +127,7 @@ module.exports.update = async (req, res) => {
 		return res.status(409).json(error.getObject());
 	}
 
-	return res.status(201).json(data);
+	return res.status(200).json(data);
 }
 
 module.exports.delete = async (req, res) => {
@@ -162,5 +162,5 @@ module.exports.delete = async (req, res) => {
 		return res.status(409).json(error.getObject());
 	}
 
-	return res.status(201).json(data);
+	return res.status(200).json(data);
 }
