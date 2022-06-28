@@ -15,7 +15,6 @@ import { AlertDialog } from '../../components/AlertDialog/AlertDialog';
 import { UseGetAllUsers } from '../../hooks/UseGetAllUsers';
 import { UseGetUserById } from '../../hooks/UseGetUserById';
 import { UseDeleteUserHook } from '../../hooks/UseDeleteUser';
-import { UseUpdateUserHook } from '../../hooks/UseUpdateUserHook';
 import { UserAddress } from '../../models/models';
 
 import styles from './Home.module.css';
