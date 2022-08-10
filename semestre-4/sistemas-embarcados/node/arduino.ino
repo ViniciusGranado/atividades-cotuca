@@ -1,10 +1,10 @@
-const int LED1 = 13
-const int LED2 = 12
+const int LED1 = 13;
+const int LED2 = 12;
 char x;
 
 void setup() {
-  pinMode(led1,OUTPUT);
-  pinMode(led2,OUTPUT);
+  pinMode(LED1,OUTPUT);
+  pinMode(LED2,OUTPUT);
 
   Serial.begin(9600);
 
