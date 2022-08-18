@@ -70,6 +70,24 @@ public class BaicFunctions {
     System.out.print("5 > 5 = ");
     System.out.println(greaterThan(5, 8));
     
+    // gte()
+    System.out.println("\ngte():");
+    
+    System.out.print("5 >= 8 = ");
+    System.out.println(gte(5, 8));
+
+    System.out.print("8 >= 5 = ");
+    System.out.println(gte(8, 5));
+    
+    System.out.print("-5 >= 8 = ");
+    System.out.println(gte(-5, 8));
+    
+    System.out.print("5 >= -8 = ");
+    System.out.println(gte(5, -8));
+    
+    System.out.print("5 >= 5 = ");
+    System.out.println(gte(5, 5));
+    
     // lessThan()
     System.out.println("\nlessThan():");
     
@@ -127,6 +145,20 @@ public class BaicFunctions {
     }
 
     return greaterThan(--n, --m);
+  }
+  
+  static boolean gte(int n, int m) {
+    if (m == n) return true;
+
+    if (m == 0) {
+      return !isNegativo(n);
+    }
+    
+    if (isNegativo(m)) {
+      return gte(++n, ++m);
+    }
+
+    return gte(--n, --m);
   }
   
   static boolean lessThan(int n, int m) {
