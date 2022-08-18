@@ -105,6 +105,24 @@ public class BaicFunctions {
     
     System.out.print("5 < 5 = ");
     System.out.println(lessThan(5, 8));
+
+    // lte()
+    System.out.println("\nlte():");
+    
+    System.out.print("5 <= 8 = ");
+    System.out.println(lte(5, 8));
+
+    System.out.print("8 <= 5 = ");
+    System.out.println(lte(8, 5));
+    
+    System.out.print("-5 <= 8 = ");
+    System.out.println(lte(-5, 8));
+    
+    System.out.print("5 <= -8 = ");
+    System.out.println(lte(5, -8));
+    
+    System.out.print("5 <= 5 = ");
+    System.out.println(lte(5, 5));
   };
   
   static boolean isNegativo(int n) {
@@ -163,6 +181,20 @@ public class BaicFunctions {
   
   static boolean lessThan(int n, int m) {
     if (m == n) return false;
+
+    if (m == 0) {
+      return isNegativo(n);
+    }
+    
+    if (isNegativo(m)) {
+      return lessThan(++n, ++m);
+    }
+
+    return lessThan(--n, --m);
+  }
+  
+  static boolean lte(int n, int m) {
+    if (m == n) return true;
 
     if (m == 0) {
       return isNegativo(n);
