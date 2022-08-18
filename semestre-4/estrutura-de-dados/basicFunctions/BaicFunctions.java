@@ -1,25 +1,92 @@
 public class BaicFunctions {
   public static void main(String[] args) {
     // isNegativo()
+    System.out.println("isNegativo():");
+    
+    System.out.print("-5: ");
     System.out.println(isNegativo(-5));
+    
+    System.out.print("5: ");
     System.out.println(isNegativo(5));
+    System.out.println();
     
     // sum()
-    System.out.println(sum(-5, 8));
+    System.out.println("\nsum():");
+    
+    System.out.print("5 + 8 = ");
+    System.out.println(sum(5, 8));
+    
+    System.out.print("5 + -8 = ");
     System.out.println(sum(5, -8));
     
-    // minus()
-    System.out.println(minus(5, 3));
-    System.out.println(minus(-10, 5));
-    System.out.println(minus(10, -5));
-    System.out.println(minus(-10, -5));
+    System.out.print("-5 + 8 = ");
+    System.out.println(sum(-5, 8));
     
+    System.out.print("-5 + -8 = ");
+    System.out.println(sum(-5, -8));
+    
+    System.out.print("5 + 0 = ");
+    System.out.println(sum(5, 0));
+    
+    System.out.print("0 + 5 = ");
+    System.out.println(sum(0, 5));
+    
+    // minus()
+    System.out.println("\nminus():");
+    
+    System.out.print("5 - 8 = ");
+    System.out.println(minus(5, 8));
+
+    System.out.print("-5 - (-8) = ");
+    System.out.println(minus(5, -8));
+    
+    System.out.print("-5 - 8 = ");
+    System.out.println(minus(5, 8));
+    
+    System.out.print("5 - (-8) = ");
+    System.out.println(minus(5, -8));
+    
+    System.out.print("5 - 0 = ");
+    System.out.println(minus(5, 0));
+    
+    System.out.print("0 - 5 = ");
+    System.out.println(minus(0, 5));
+
     // greaterThan()
-    System.out.println(greaterThan(5, 2));
-    System.out.println(greaterThan(2 , 10));
-    System.out.println(greaterThan(-2, -5));
-    System.out.println(greaterThan(-5, -2));
-    System.out.println(greaterThan(2, 2));
+    System.out.println("\ngreaterThan():");
+    
+    System.out.print("5 > 8 = ");
+    System.out.println(greaterThan(5, 8));
+
+    System.out.print("8 > 5 = ");
+    System.out.println(greaterThan(8, 5));
+    
+    System.out.print("-5 > 8 = ");
+    System.out.println(greaterThan(-5, 8));
+    
+    System.out.print("5 > -8 = ");
+    System.out.println(greaterThan(5, -8));
+    
+    System.out.print("5 > 5 = ");
+    System.out.println(greaterThan(5, 8));
+    
+    // lessThan()
+    System.out.println("\nlessThan():");
+    
+    System.out.print("5 < 8 = ");
+    System.out.println(lessThan(5, 8));
+
+    System.out.print("8 < 5 = ");
+    System.out.println(lessThan(8, 5));
+    
+    System.out.print("-5 < 8 = ");
+    System.out.println(lessThan(-5, 8));
+    
+    System.out.print("5 < -8 = ");
+    System.out.println(lessThan(5, -8));
+    
+    System.out.print("5 < 5 = ");
+    System.out.println(lessThan(5, 8));
   };
   
   static boolean isNegativo(int n) {
@@ -60,6 +127,20 @@ public class BaicFunctions {
     }
 
     return greaterThan(--n, --m);
+  }
+  
+  static boolean lessThan(int n, int m) {
+    if (m == n) return false;
+
+    if (m == 0) {
+      return isNegativo(n);
+    }
+    
+    if (isNegativo(m)) {
+      return lessThan(++n, ++m);
+    }
+
+    return lessThan(--n, --m);
   }
   
   //////////////
