@@ -1,7 +1,11 @@
-export const Header = () => {
+interface HeaderProps {
+  title: string;
+}
+
+export const Header: React.FC<HeaderProps> = ({title}) => {
   return (
     <header className="header">
-      Cabeçalho
+      <h2>{title}</h2>
     </header>
-  );
+  )
 }
