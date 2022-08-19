@@ -1,4 +1,4 @@
-public class BaicFunctions {
+public class BasicFunctions {
   public static void main(String[] args) {
     // isNegativo()
     System.out.println("isNegativo():");
@@ -123,6 +123,15 @@ public class BaicFunctions {
     
     System.out.print("5 <= 5 = ");
     System.out.println(lte(5, 5));
+    
+    // abs()
+    System.out.println("\nabs():");
+    
+    System.out.print("|5| = ");
+    System.out.println(abs(5));
+
+    System.out.print("|-5| = ");
+    System.out.println(abs(-5));
   };
   
   static boolean isNegativo(int n) {
@@ -205,6 +214,12 @@ public class BaicFunctions {
     }
 
     return lessThan(--n, --m);
+  }
+
+  static int abs(int n) {
+    if (!isNegativo(n)) return n;
+
+    return sum(sum(n, -n), -n);
   }
   
   //////////////
