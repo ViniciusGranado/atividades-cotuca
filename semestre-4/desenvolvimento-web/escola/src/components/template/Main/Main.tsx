@@ -15,7 +15,6 @@ export const Main = ({ children, title }: MainProps) => {
         <div>
           {children}
         </div>
-        Conteúdo
       </main>
     </React.Fragment>
   )
