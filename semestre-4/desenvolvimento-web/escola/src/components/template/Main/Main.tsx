@@ -9,13 +9,13 @@ interface MainProps {
 
 export const Main = ({ children, title }: MainProps) => {
   return (
-    <React.Fragment>
+    <div className="content">
       <Header title={title} />
-      <main className="content">
+      <main>
         <div>
           {children}
         </div>
       </main>
-    </React.Fragment>
+    </div>
   )
 }

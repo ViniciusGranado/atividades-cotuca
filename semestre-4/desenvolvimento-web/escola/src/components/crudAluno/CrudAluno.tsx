@@ -1,4 +1,4 @@
-import { Main } from '../components/template/Main/Main';
+import { Main } from '../template/Main/Main';
 import './CrudAluno.css';
 
 const title = "Cadastro de Alunos";

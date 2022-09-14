@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from "react-router-dom";
 import { Main } from './components/template/Main/Main';
-import { CrudAluno } from './crudAluno/CrudAluno';
+import { CrudAluno } from './components/crudAluno/CrudAluno';
 
 export const Rotas = () => {
   return (

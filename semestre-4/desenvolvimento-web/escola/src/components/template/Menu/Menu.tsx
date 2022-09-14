@@ -4,16 +4,14 @@ import './Menu.css';
 export const Menu = () => {
   return (
     <nav className='menu'>
-      <nav className='menu'>
-        <Link to="/alunos">
-          Alunos
-        </Link>
-        <Link to="/cursos">
-          Cursos
-        </Link>
-        <Link to="/carometro">
-          Carômetro
-        </Link>
-      </nav>
+      <Link to="/alunos">
+        Alunos
+      </Link>
+      <Link to="/cursos">
+        Cursos
+      </Link>
+      <Link to="/carometro">
+        Carômetro
+      </Link>
     </nav>);
 }
