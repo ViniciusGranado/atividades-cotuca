@@ -1,18 +1,19 @@
+import { Link } from 'react-router-dom';
 import './Menu.css';
 
 export const Menu = () => {
   return (
     <nav className='menu'>
       <nav className='menu'>
-        <a href="#/">
+        <Link to="/alunos">
           Alunos
-        </a>
-        <a href="#/">
+        </Link>
+        <Link to="/cursos">
           Cursos
-        </a>
-        <a href="#/">
+        </Link>
+        <Link to="/carometro">
           Carômetro
-        </a>
+        </Link>
       </nav>
     </nav>);
 }

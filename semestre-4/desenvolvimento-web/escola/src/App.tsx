@@ -1,20 +1,22 @@
 import { Footer } from "./components/template/Footer/Footer";
 import { Logo } from "./components/template/Logo/Logo";
-import { Main } from "./components/template/Main/Main";
 import { Menu } from "./components/template/Menu/Menu";
 import './App.css';
-import { CrudAluno } from "./crudAluno/CrudAluno";
+import { Rotas } from "./Rotas";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
-    <div className="App">
-      <Logo />
-      <Menu />
+    <BrowserRouter>
+      <div className="App">
+        <Logo />
+        <Menu />
 
-      <CrudAluno />
+        <Rotas />
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
+    </BrowserRouter>
   );
 }
 
