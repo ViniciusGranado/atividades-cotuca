@@ -1,3 +1,5 @@
+using Microsoft.EntityFrameworkCore;
+using ProjetoEscola_API.Data;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,13 +9,19 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Add DbContext
+builder.Services.AddDbContext<EscolaContext>(options =>
+{
+  options.UseSqlServer(builder.Configuration.GetConnectionString("StringConexaoSQLServer"));
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+  app.UseSwagger();
+  app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
