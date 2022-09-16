@@ -114,6 +114,22 @@ public class Arvore<T extends Comparable<T>> {
     return this.getQtNodes(this.root);
   }
 
+  private boolean includes(T content, Node root) {
+    if (content.compareTo(root.getContent()) == 0) {
+      return true;
+    }
+
+    if (content == null) return false;
+
+    return (
+      includes(content, root.getLeft()) || includes(content, root.getRight())
+    );
+  }
+
+  public boolean includes(T content) {
+    return includes(content, this.root);
+  }
+
   private class Node {
 
     private T content;
@@ -156,4 +172,3 @@ public class Arvore<T extends Comparable<T>> {
     }
   }
 }
-  
