@@ -1,44 +1,98 @@
-import { Main } from '../template/Main/Main';
+import { Main } from '../template/Main/Main'
+import axios from 'axios';
 import './CrudAluno.css';
+import React, { useEffect, useState } from 'react';
+import { aluno } from '../../models/models';
+import { Form } from '../Form/Form';
+import { Table } from '../Table/Table';
+import { alunoDto } from '../../dto/dto';
 
 const title = "Cadastro de Alunos";
 
-const Alunos = [
-  { 'id': 1, 'ra': 11111, 'nome': 'André', 'codCurso': 19 },
-  { 'id': 2, 'ra': 22222, 'nome': 'Amanda', 'codCurso': 28 },
-  { 'id': 3, 'ra': 33333, 'nome': 'Pedro', 'codCurso': 39 },
-  { 'id': 4, 'ra': 44444, 'nome': 'Alice', 'codCurso': 59 },
-];
+const urlAPI = "https://localhost:7221/api/aluno";
 
 export const CrudAluno = () => {
-  const renderTable = () => {
-    return (
-      <div className="listagem">
-        <table className="listaAlunos" id="tblListaAlunos">
-          <thead>
-            <tr className="cabecTabela">
-              <th className="tabTituloRa">Ra</th>
-              <th className="tabTituloNome">Nome</th>
-              <th className="tabTituloCurso">Curso</th>
-            </tr>
-          </thead>
-          <tbody>
-            {Alunos.map(
-              (aluno) =>
-                <tr key={aluno.id}>
-                  <td>{aluno.ra}</td>
-                  <td>{aluno.nome}</td>
-                  <td>{aluno.codCurso}</td>
-                </tr>
-            )}
-          </tbody>
-        </table>
-      </div>
-    )
+  const [alunos, setAlunos] = useState<aluno[]>([]);
+  const [formData, setFormData] = useState<aluno>({
+    id: '',
+    ra: '',
+    nome: '',
+    codCurso: '',
+  })
+
+  useEffect(() => {
+    axios(urlAPI).then(resp => {
+      setAlunos(resp.data);
+    })
+  }, [])
+
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
+
+  const limpar = () => {
+    setAlunos([]);
   }
+
+  const salvar = () => {
+    const aluno = formData;
+
+    const metodo = aluno.id ? 'put' : 'post';
+    aluno.codCurso = aluno.codCurso;
+    const url = aluno.id ? `${urlAPI}/${aluno.id}` : urlAPI;
+
+    if (!aluno.id) {
+      delete aluno.id;
+    }
+
+    axios[metodo](url, aluno)
+      .then(resp => {
+        const lista = getListaAtualizada(resp.data);
+        setAlunos(lista);
+      })
+  }
+
+  const getListaAtualizada = (aluno: aluno) => {
+    const lista = alunos.filter((a) => a.id !== aluno.id);
+    lista.unshift(aluno);
+    return lista;
+  }
+
+  const atualizaCampo = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((prev) => {
+      return {
+        ...prev,
+        [event.target.name]: event.target.value,
+      };
+    });
+  }
+
+  const carregar = (aluno: aluno) => {
+    setFormData(aluno);
+  }
+
+  const remover = (aluno: aluno) => {
+    const url = urlAPI + "/" + aluno.id;
+
+    if (window.confirm("Confirma remoção do aluno: " + aluno.ra)) {
+      console.log("entrou no confirm");
+      axios['delete'](url)
+        .then((resp) => {
+          const lista = getListaAtualizada(aluno)
+          setAlunos(lista.filter((a) => a !== aluno));
+        })
+    }
+  }
+
   return (
     <Main title={title}>
-      {renderTable()}
+      <Form
+        formData={formData}
+        onChange={atualizaCampo}
+        onCancel={limpar}
+        onSave={salvar}
+      />
+      <Table alunos={alunos} onAlter={carregar} onDelete={remover} />
     </Main>
   );
 }
