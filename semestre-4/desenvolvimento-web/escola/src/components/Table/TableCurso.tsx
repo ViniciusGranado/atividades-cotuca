@@ -24,9 +24,9 @@ export const TableCurso: React.FC<TableCursoProps> = ({
         <tbody>
           {cursos.map((curso) => (
             <tr key={curso.id}>
-              <td>{curso.ra}</td>
-              <td>{curso.nome}</td>
               <td>{curso.codCurso}</td>
+              <td>{curso.nomeCurso}</td>
+              <td>{curso.periodo}</td>
               <td>
                 <button onClick={() => onAlter(curso)}>Altera</button>
               </td>
