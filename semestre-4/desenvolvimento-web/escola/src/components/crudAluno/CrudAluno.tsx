@@ -1,10 +1,11 @@
 import { Main } from '../template/Main/Main'
 import axios from 'axios';
-import './CrudAluno.css';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { aluno } from '../../models/models';
-import { Form } from '../Form/Form';
-import { Table } from '../Table/Table';
+import { FormAluno } from '../Form/FormAluno';
+import { TableAluno } from '../Table/TableAluno';
+
+import './CrudAluno.css';
 
 const title = "Cadastro de Alunos";
 
@@ -25,10 +26,6 @@ export const CrudAluno = () => {
     })
   }, [])
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
-
   const limpar = () => {
     setAlunos([]);
   }
@@ -37,7 +34,6 @@ export const CrudAluno = () => {
     const aluno = formData;
 
     const metodo = aluno.id ? 'put' : 'post';
-    aluno.codCurso = aluno.codCurso;
     const url = aluno.id ? `${urlAPI}/${aluno.id}` : urlAPI;
 
     if (!aluno.id) {
@@ -80,22 +76,22 @@ export const CrudAluno = () => {
     if (window.confirm("Confirma remoção do aluno: " + aluno.ra)) {
       console.log("entrou no confirm");
       axios['delete'](url)
-        .then((resp) => {
+        .then(() => {
           const lista = getListaAtualizada(aluno, false);
           setAlunos(lista);
-    })
+        })
+    }
   }
-}
 
-return (
-  <Main title={title}>
-    <Form
-      formData={formData}
-      onChange={atualizaCampo}
-      onCancel={limpar}
-      onSave={salvar}
-    />
-    <Table alunos={alunos} onAlter={carregar} onDelete={remover} />
-  </Main>
-);
+  return (
+    <Main title={title}>
+      <FormAluno
+        formData={formData}
+        onChange={atualizaCampo}
+        onCancel={limpar}
+        onSave={salvar} 
+      />
+      <TableAluno alunos={alunos} onAlter={carregar} onDelete={remover} />
+    </Main>
+  );
 }

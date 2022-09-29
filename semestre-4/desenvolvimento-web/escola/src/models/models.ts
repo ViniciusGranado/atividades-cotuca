@@ -4,3 +4,10 @@ export interface aluno {
   nome: string, 
   codCurso: string;
 }
+
+export interface curso {
+  [id: string]: string,
+  codCurso: string,
+  nomeCurso: string,
+  periodo: string,
+}

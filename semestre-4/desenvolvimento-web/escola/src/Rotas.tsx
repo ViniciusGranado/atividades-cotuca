@@ -1,7 +1,7 @@
-import React from 'react';
 import { Routes, Route } from "react-router-dom";
 import { Main } from './components/template/Main/Main';
-import { CrudAluno } from './components/crudAluno/CrudAluno';
+import { CrudAluno } from './components/CrudAluno/CrudAluno';
+import { CrudCurso } from "./components/CrudCurso/CrudCurso";
 
 export const Rotas = () => {
   return (
@@ -15,6 +15,8 @@ export const Rotas = () => {
       />
 
       <Route path='/alunos' element={< CrudAluno />} />
+
+      <Route path='/cursos' element={< CrudCurso />} />
 
       < Route path='*' element={
         <Main title="Bem Vindo!">

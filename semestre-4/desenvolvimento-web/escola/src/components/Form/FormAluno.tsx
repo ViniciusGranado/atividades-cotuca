@@ -1,15 +1,15 @@
-import { ChangeEvent, MouseEvent, useEffect } from "react";
+import { ChangeEvent, MouseEvent } from "react";
 import { aluno } from "../../models/models";
 import './Form.css';
 
-interface FormProps {
+interface FormAlunoProps {
   formData: aluno;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   onSave: (event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => void;
   onCancel: (event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => void;
 }
 
-export const Form: React.FC<FormProps> = ({
+export const FormAluno: React.FC<FormAlunoProps> = ({
   formData,
   onChange,
   onSave,
