@@ -42,7 +42,8 @@ export const FormAluno: React.FC<FormAlunoProps> = ({
       />
 
       <label> Código do Curso: </label>
-      <select name="codCurso" id="codCurso" onChange={(event) => onChange(event)} value={formData.codCurso}>
+      <select name="codCurso" id="codCurso" onChange={(event) => onChange(event)} value={formData.codCurso} style={{ height: '100%' }}>
+        <option value="" disabled selected hidden>Selecione o curso</option>
         {cursos.map((curso) => <option value={curso.codCurso} key={curso.codCurso}>{curso.nomeCurso}</option>)}
       </select>
 

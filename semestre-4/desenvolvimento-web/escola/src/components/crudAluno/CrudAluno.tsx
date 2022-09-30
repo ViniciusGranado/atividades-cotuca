@@ -12,15 +12,17 @@ const title = "Cadastro de Alunos";
 const urlAPIAlunos = "https://localhost:7221/api/aluno";
 const urlAPICursos = "https://localhost:7221/api/curso";
 
+const initialFormData = {
+  id: '',
+  ra: '',
+  nome: '',
+  codCurso: '',
+}
+
 export const CrudAluno = () => {
   const [alunos, setAlunos] = useState<aluno[]>([]);
   const [cursos, setCursos] = useState<curso[]>([]);
-  const [formData, setFormData] = useState<aluno>({
-    id: '',
-    ra: '',
-    nome: '',
-    codCurso: '',
-  })
+  const [formData, setFormData] = useState<aluno>(initialFormData);
 
   useEffect(() => {
     axios(urlAPIAlunos).then(resp => {
@@ -45,11 +47,6 @@ export const CrudAluno = () => {
           periodo: curso.periodo,
         }))
       );
-
-      setFormData((prev) => ({
-        ...prev,
-        codCurso: resp.data[0].codCurso,
-      }))
     })
   }, [])
 
@@ -72,6 +69,8 @@ export const CrudAluno = () => {
         const lista = getListaAtualizada(resp.data);
         setAlunos(lista);
       })
+
+    setFormData(initialFormData);
   }
 
   const getListaAtualizada = (aluno: aluno, add: boolean = true) => {

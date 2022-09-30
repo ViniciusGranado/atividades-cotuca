@@ -10,6 +10,10 @@ input[type=number] {
   width: 50px;
 }
 
+select {
+  padding: 12px;
+}
+
 .inclui-container {
   margin: 20px;
   border-radius: 5px;
