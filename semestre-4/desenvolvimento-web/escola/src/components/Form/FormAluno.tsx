@@ -1,16 +1,18 @@
 import { ChangeEvent, MouseEvent } from "react";
-import { aluno } from "../../models/models";
+import { aluno, curso } from "../../models/models";
 import './Form.css';
 
 interface FormAlunoProps {
   formData: aluno;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  cursos: curso[],
+  onChange: (event: ChangeEvent<HTMLInputElement> | ChangeEvent<HTMLSelectElement>) => void;
   onSave: (event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => void;
   onCancel: (event: MouseEvent<HTMLButtonElement, globalThis.MouseEvent>) => void;
 }
 
 export const FormAluno: React.FC<FormAlunoProps> = ({
   formData,
+  cursos,
   onChange,
   onSave,
   onCancel,
@@ -40,15 +42,9 @@ export const FormAluno: React.FC<FormAlunoProps> = ({
       />
 
       <label> Código do Curso: </label>
-      <input
-        type="number"
-        id="codCurso"
-        placeholder="0"
-        className="form-input"
-        name="codCurso"
-        value={formData.codCurso}
-        onChange={(event) => onChange(event)}
-      />
+      <select name="codCurso" id="codCurso" onChange={(event) => onChange(event)} value={formData.codCurso}>
+        {cursos.map((curso) => <option value={curso.codCurso} key={curso.codCurso}>{curso.nomeCurso}</option>)}
+      </select>
 
       <button className="btnSalvar"
         onClick={(event) => onSave(event)} >

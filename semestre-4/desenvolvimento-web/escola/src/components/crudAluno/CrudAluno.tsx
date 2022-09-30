@@ -1,7 +1,7 @@
 import { Main } from '../template/Main/Main'
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { aluno } from '../../models/models';
+import { aluno, curso } from '../../models/models';
 import { FormAluno } from '../Form/FormAluno';
 import { TableAluno } from '../Table/TableAluno';
 
@@ -9,10 +9,12 @@ import './CrudAluno.css';
 
 const title = "Cadastro de Alunos";
 
-const urlAPI = "https://localhost:7221/api/aluno";
+const urlAPIAlunos = "https://localhost:7221/api/aluno";
+const urlAPICursos = "https://localhost:7221/api/curso";
 
 export const CrudAluno = () => {
   const [alunos, setAlunos] = useState<aluno[]>([]);
+  const [cursos, setCursos] = useState<curso[]>([]);
   const [formData, setFormData] = useState<aluno>({
     id: '',
     ra: '',
@@ -21,8 +23,33 @@ export const CrudAluno = () => {
   })
 
   useEffect(() => {
-    axios(urlAPI).then(resp => {
-      setAlunos(resp.data);
+    axios(urlAPIAlunos).then(resp => {
+      setAlunos(
+        resp.data.map((aluno: aluno) => ({
+          id: aluno.id,
+          ra: aluno.ra,
+          nome: aluno.nome,
+          codCurso: aluno.codCurso,
+        }))
+      );
+    })
+  }, [])
+
+  useEffect(() => {
+    axios(urlAPICursos).then(resp => {
+      setCursos(
+        resp.data.map((curso: curso) => ({
+          id: curso.id,
+          codCurso: curso.codCurso,
+          nomeCurso: curso.nomeCurso,
+          periodo: curso.periodo,
+        }))
+      );
+
+      setFormData((prev) => ({
+        ...prev,
+        codCurso: resp.data[0].codCurso,
+      }))
     })
   }, [])
 
@@ -34,7 +61,7 @@ export const CrudAluno = () => {
     const aluno = formData;
 
     const metodo = aluno.id ? 'put' : 'post';
-    const url = aluno.id ? `${urlAPI}/${aluno.id}` : urlAPI;
+    const url = aluno.id ? `${urlAPIAlunos}/${aluno.id}` : urlAPIAlunos;
 
     if (!aluno.id) {
       delete aluno.id;
@@ -57,7 +84,7 @@ export const CrudAluno = () => {
     return lista;
   }
 
-  const atualizaCampo = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const atualizaCampo = (event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) => {
     setFormData((prev) => {
       return {
         ...prev,
@@ -71,7 +98,7 @@ export const CrudAluno = () => {
   }
 
   const remover = (aluno: aluno) => {
-    const url = urlAPI + "/" + aluno.id;
+    const url = urlAPIAlunos + "/" + aluno.id;
 
     if (window.confirm("Confirma remoção do aluno: " + aluno.ra)) {
       console.log("entrou no confirm");
@@ -87,9 +114,10 @@ export const CrudAluno = () => {
     <Main title={title}>
       <FormAluno
         formData={formData}
+        cursos={cursos}
         onChange={atualizaCampo}
         onCancel={limpar}
-        onSave={salvar} 
+        onSave={salvar}
       />
       <TableAluno alunos={alunos} onAlter={carregar} onDelete={remover} />
     </Main>
