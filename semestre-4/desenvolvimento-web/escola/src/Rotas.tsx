@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { Main } from './components/template/Main/Main';
 import { CrudAluno } from './components/CrudAluno/CrudAluno';
 import { CrudCurso } from "./components/CrudCurso/CrudCurso";
+import { Carometro } from "./components/Carometro/Carometro";
 
 export const Rotas = () => {
   return (
@@ -17,6 +18,8 @@ export const Rotas = () => {
       <Route path='/alunos' element={< CrudAluno />} />
 
       <Route path='/cursos' element={< CrudCurso />} />
+
+      <Route path='/carometro' element={< Carometro />} />
 
       < Route path='*' element={
         <Main title="Bem Vindo!">

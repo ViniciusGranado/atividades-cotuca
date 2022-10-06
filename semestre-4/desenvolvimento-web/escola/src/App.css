@@ -42,3 +42,8 @@ div.content {
 footer.footer {
   grid-area: footer;
 }
+
+img {
+  height: auto;
+  max-width: 100%;
+}
