@@ -5,3 +5,9 @@ export interface TabItem {
   url: string;
   style?: SxProps
 }
+
+export interface Product {
+  name: string;
+  description: string;
+  imgUrl: string;
+}

@@ -1,0 +1,17 @@
+.Products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.MuiPaper-root {
+  margin: 1rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.MuiCardActions-root {
+  margin-top: auto;
+}

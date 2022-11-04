@@ -1,17 +1,47 @@
 import { Box, Tab, Tabs } from "@mui/material";
 import { TabItem } from '../../models/models';
+import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
 
 interface NavbarProps {
-  value: number;
   tabs: TabItem[];
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ value, tabs }) => {
+export const Navbar: React.FC<NavbarProps> = ({ tabs }) => {
+  const navigate = useNavigate();
+  const [currentTab, setCurrentTab] = useState(0);
+
+  const LinkTab: React.FC<TabItem & { index: number }> = ({
+    label,
+    url,
+    style,
+    index
+  }) => {
+    return (
+      <Tab
+        component="a"
+        onClick={(event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+          event.preventDefault();
+          setCurrentTab(index);
+          navigate(url);
+        }}
+        label={label}
+        href={url}
+        sx={style}
+      />
+    );
+  }
+
   return (
     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-      <Tabs value={value} sx={{ ".MuiTabs-flexContainer": {justifyContent: 'flex-end'}}}>
+      <Tabs value={currentTab} sx={{ ".MuiTabs-flexContainer": { justifyContent: 'flex-end' } }}>
         {tabs.map((tab, index) => (
-          <Tab value={index} label={tab.label} sx={tab.style}/>
+          <LinkTab
+            label={tab.label}
+            style={tab.style}
+            url={tab.url}
+            index={index}
+          />
         ))}
       </Tabs>
     </Box>
