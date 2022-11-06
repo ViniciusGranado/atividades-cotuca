@@ -1,0 +1,11 @@
+.Carometro {
+  padding: 20px;
+}
+
+.Carometro > .container-alunos {
+  align-items: flex-start;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}

@@ -1,0 +1,28 @@
+.UserCard {
+  border-radius: 20px;
+  padding: 20px;
+  width: 180px;
+  background-color: #FFF;
+  text-align: center;
+}
+
+.profile-picture > img {
+  border-radius: 50%;
+  max-width: 100px;
+}
+
+p {
+  margin: 5px 0;
+}
+
+.ra {
+  font-weight: bold;
+}
+
+.nome {
+  font-size: 1.2rem;
+}
+
+.curso {
+  font-size: 1.2rem;
+}
