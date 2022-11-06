@@ -41,6 +41,7 @@ export const Navbar: React.FC<NavbarProps> = ({ tabs }) => {
             style={tab.style}
             url={tab.url}
             index={index}
+            key={index}
           />
         ))}
       </Tabs>

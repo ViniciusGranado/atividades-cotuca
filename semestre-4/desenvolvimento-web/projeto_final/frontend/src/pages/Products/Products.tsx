@@ -7,7 +7,7 @@ export const Products: React.FC<{ products: Product[] }> = ({ products }) => {
   return (
     <Box className='Products'>
       {products.map((product) => (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ width: 345 }}>
           <CardMedia
             component="img"
             height="140"
