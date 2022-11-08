@@ -32,32 +32,38 @@ const mockProducts: Product[] = [{
   id: 1,
   name: "Bread Roll Foccacia",
   description: "Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.",
-  imgUrl: "http://dummyimage.com/100x100.png/dddddd/000000"
+  imgUrl: "http://dummyimage.com/100x100.png/dddddd/000000",
+  price: 12.45,
 }, {
   id: 2,
   name: "Flower - Carnations",
   description: "In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.",
-  imgUrl: "http://dummyimage.com/100x100.png/ff4444/ffffff"
+  imgUrl: "http://dummyimage.com/100x100.png/ff4444/ffffff",
+  price: 12.45,
 }, {
   id: 3,
   name: "Pork - Back Ribs",
   description: "Aliquam quis turpis eget elit sodales scelerisque. Mauris sit amet eros. Suspendisse accumsan tortor quis turpis.",
-  imgUrl: "http://dummyimage.com/100x100.png/5fa2dd/ffffff"
+  imgUrl: "http://dummyimage.com/100x100.png/5fa2dd/ffffff",
+  price: 12.45,
 }, {
   id: 4,
   name: "Appetizer - Assorted Box",
   description: "In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.",
-  imgUrl: "http://dummyimage.com/100x100.png/5fa2dd/ffffff"
+  imgUrl: "http://dummyimage.com/100x100.png/5fa2dd/ffffff",
+  price: 12.45,
 }, {
   id: 5,
   name: "Wine - Sawmill Creek Autumn",
   description: "In hac habitasse platea dictumst. Etiam faucibus cursus urna. Ut tellus.",
-  imgUrl: "http://dummyimage.com/100x100.png/5fa2dd/ffffff"
+  imgUrl: "http://dummyimage.com/100x100.png/5fa2dd/ffffff",
+  price: 12.45,
 }, {
   id: 6,
   name: "Oil - Olive",
   description: "Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum.",
-  imgUrl: "http://dummyimage.com/100x100.png/dddddd/000000"
+  imgUrl: "http://dummyimage.com/100x100.png/dddddd/000000",
+  price: 12.45,
 }]
 
 export const App = () => {

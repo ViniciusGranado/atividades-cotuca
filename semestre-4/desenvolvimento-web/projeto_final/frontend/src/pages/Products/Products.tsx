@@ -25,7 +25,10 @@ export const Products: React.FC<{ products: Product[] }> = ({ products }) => {
             </Typography>
           </CardContent>
 
-          <CardActions>
+          <CardActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
+            <Typography variant="body2" fontSize='2rem' fontWeight='500'>
+              R${product.price}
+            </Typography>
             <Button size="small" variant="contained">Comprar</Button>
           </CardActions>
         </Card>
