@@ -7,7 +7,11 @@ export const Products = () => {
   const { isProductsLoading, products } = useGetAllProductsHook();
 
   if (isProductsLoading) {
-    return <CircularProgress />;
+    return (
+      <Box display='flex' justifyContent='center'>
+        <CircularProgress />
+      </Box>
+    );
   }
 
   if (products === undefined) {
