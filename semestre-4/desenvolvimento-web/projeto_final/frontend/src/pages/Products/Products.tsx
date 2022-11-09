@@ -1,9 +1,19 @@
-import { Box, Card, CardMedia, CardContent, Typography, CardActions, Button } from "@mui/material";
-import { Product } from "../../models/models";
+import { Box, Card, CardMedia, CardContent, Typography, CardActions, Button, CircularProgress } from "@mui/material";
+import { useGetAllProductsHook } from "../../hooks/useGetAllProductsHook";
 
 import './Products.css';
 
-export const Products: React.FC<{ products: Product[] }> = ({ products }) => {
+export const Products = () => {
+  const { isProductsLoading, products } = useGetAllProductsHook();
+
+  if (isProductsLoading) {
+    return <CircularProgress />;
+  }
+
+  if (products === undefined) {
+    return <Typography>Error while loading</Typography>;
+  }
+
   return (
     <Box className='Products'>
       {products.map((product) => (

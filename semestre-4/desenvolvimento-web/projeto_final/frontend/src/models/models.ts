@@ -13,3 +13,5 @@ export interface Product {
   imgUrl: string;
   price: number;
 }
+
+export type NewProductDto = Omit<Product, 'id'>;

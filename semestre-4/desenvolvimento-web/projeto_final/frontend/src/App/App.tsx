@@ -73,7 +73,7 @@ export const App = () => {
 
       <MainContainer>
         <Routes>
-          <Route path="/produtos" element={<Products products={mockProducts} />} />
+          <Route path="/produtos" element={<Products />} />
           <Route path="/admin" element={<Admin products={mockProducts} />} />
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Home />} />
