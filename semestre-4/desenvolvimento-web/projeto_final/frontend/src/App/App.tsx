@@ -7,6 +7,7 @@ import { Products } from '../pages/Products/Products';
 import { Admin } from '../pages/Admin/Admin';
 import { Login } from '../pages/Login/Login';
 import { MainContainer } from '../components/MainContainer/MainContainer';
+import { EditProduct } from '../pages/EditProduct/EditProduct';
 
 const tabs: TabItem[] = [
   {
@@ -36,6 +37,7 @@ export const App = () => {
       <MainContainer>
         <Routes>
           <Route path="/produtos" element={<Products />} />
+          <Route path="/admin/:productId" element={<EditProduct />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Home />} />
