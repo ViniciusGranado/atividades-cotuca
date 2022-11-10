@@ -1,6 +1,8 @@
 import { FormGroup, TextField } from "@mui/material";
 import { Product } from "../../models/models";
 
+import './EditProduct.css';
+
 const product: Product = {
     id: 1,
     name: 'Name',
@@ -11,7 +13,7 @@ const product: Product = {
 
 export const EditProduct = () => {
     return (
-        <FormGroup>
+        <FormGroup className='EditProduct'>
             <TextField label="Nome do produto" defaultValue={product.name} />
             <TextField
                 label="Descrição do produto"
