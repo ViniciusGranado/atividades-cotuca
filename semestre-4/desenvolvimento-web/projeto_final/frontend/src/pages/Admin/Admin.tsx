@@ -8,7 +8,9 @@ import {
   Button,
   CircularProgress,
 } from "@mui/material";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { DialogModal, DialogModalProps } from "../../components/DialogModal/DialogModal";
 import { useDeleteProductHook } from "../../hooks/useDeleteProductHook";
 import { useGetAllProductsHook } from "../../hooks/useGetAllProductsHook";
 
@@ -17,7 +19,45 @@ import "./Admin.css";
 export const Admin = () => {
   const navigate = useNavigate();
   const { isProductsLoading, products } = useGetAllProductsHook();
-  const { deleteProduct, isDeleteProductLoading } = useDeleteProductHook();
+  const { deleteProduct, isDeleteProductLoading, isDeleteProductSuccess, isDeleteProductError } = useDeleteProductHook();
+  const [dialogModalConfig, setDialogModalConfig] = useState<DialogModalProps>({
+    isDialogOpen: false,
+    title: '',
+    severity: 'success',
+    message: '',
+    onClickButtonAction: () => {},
+  });
+
+  useEffect(() => {
+    if (isDeleteProductSuccess) {
+      setDialogModalConfig({
+        isDialogOpen: true,
+        title: 'Sucesso',
+        message: 'Produto deletado com sucesso!',
+        severity: 'success',
+        onClickButtonAction: closeDialogHandler,
+      });
+    }
+  }, [isDeleteProductSuccess]);
+
+  useEffect(() => {
+    if (isDeleteProductError) {
+      setDialogModalConfig({
+        isDialogOpen: true,
+        title: 'Erro',
+        message: 'Ocorreu um erro ao deletar o produto!',
+        severity: 'error',
+        onClickButtonAction: closeDialogHandler,
+      });
+    }
+  }, [isDeleteProductError]);
+
+  const closeDialogHandler = () => {
+    setDialogModalConfig((prev) => ({
+      ...prev,
+      isDialogOpen: false,
+    }));
+  }
 
   if (isProductsLoading  || isDeleteProductLoading) {
     return (
@@ -76,6 +116,7 @@ export const Admin = () => {
           </Card>
         ))}
       </Box>
+      <DialogModal {...dialogModalConfig} />
     </>
   );
 };
