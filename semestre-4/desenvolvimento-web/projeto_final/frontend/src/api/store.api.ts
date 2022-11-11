@@ -24,6 +24,6 @@ export const storeApi = {
   insertProduct: (newProductDto: NewProductDto) =>
     request('products', {
       method: 'POST',
-      body: JSON.stringify(newProductDto),
+      body: JSON.stringify(newProductDto), 
     }),
 };
