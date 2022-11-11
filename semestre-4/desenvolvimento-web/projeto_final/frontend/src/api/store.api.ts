@@ -1,4 +1,4 @@
-import { NewProductDto } from "../models/models";
+import { NewProductDto, Product } from "../models/models";
 
 const request = (
   path: RequestInfo,
@@ -21,9 +21,9 @@ const request = (
 export const storeApi = {
   getAllProducts: request('Product'),
   getProductById: (id: string) => request(`Product/${id}`),
-  insertProduct: (newProductDto: NewProductDto) =>
-    request('products', {
-      method: 'POST',
-      body: JSON.stringify(newProductDto), 
+  editProduct: (productDto: Product) =>
+    request(`Product/${productDto.id}`, {
+      method: 'PUT',
+      body: JSON.stringify(productDto), 
     }),
 };
