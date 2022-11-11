@@ -9,6 +9,7 @@ import {
   CircularProgress,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useDeleteProductHook } from "../../hooks/useDeleteProductHook";
 import { useGetAllProductsHook } from "../../hooks/useGetAllProductsHook";
 
 import "./Admin.css";
@@ -16,8 +17,9 @@ import "./Admin.css";
 export const Admin = () => {
   const navigate = useNavigate();
   const { isProductsLoading, products } = useGetAllProductsHook();
+  const { deleteProduct, isDeleteProductLoading } = useDeleteProductHook();
 
-  if (isProductsLoading) {
+  if (isProductsLoading  || isDeleteProductLoading) {
     return (
       <Box display="flex" justifyContent="center">
         <CircularProgress />
@@ -58,6 +60,17 @@ export const Admin = () => {
                 }}
               >
                 Editar
+              </Button>
+              <Button
+                size="small"
+                variant="contained"
+                color='error'
+                onClick={(event) => {
+                  event.preventDefault();
+                  deleteProduct(String(product.id));
+                }}
+              >
+                Deletar
               </Button>
             </CardActions>
           </Card>

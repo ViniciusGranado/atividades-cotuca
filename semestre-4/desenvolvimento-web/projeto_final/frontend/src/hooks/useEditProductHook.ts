@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useMutation } from "react-query";
+import { useMutation, useQueryClient } from "react-query";
 import { storeApi } from "../api/store.api";
 import { Product } from "../models/models";
 
@@ -13,13 +13,14 @@ const initialNewProductDto: Product = {
 
 export const useEditProductHook = () => {
   const [productDto, setProductDto] = useState(initialNewProductDto);
+  const queryClient = useQueryClient();
 
   const {
     mutate: editProduct,
     isSuccess: isEditProductSuccess,
     isLoading: isEditProductLoading,
     isError: isEditProductError,
-  } = useMutation<Product>(storeApi.editProduct(productDto));
+  } = useMutation<Product>(storeApi.editProduct(productDto), {onSuccess: () => queryClient.invalidateQueries('productById')});
 
   return {
     editProduct,

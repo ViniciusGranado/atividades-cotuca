@@ -14,6 +14,10 @@ const request = (
       throw new Error(`${response.status}`);
     }
 
+    if (response.status === 204) {
+      return;
+    }
+
     return response.json();
   };
 };
@@ -21,6 +25,10 @@ const request = (
 export const storeApi = {
   getAllProducts: request('Product'),
   getProductById: (id: string) => request(`Product/${id}`),
+  deleteProduct: (id: string) => request(`Product/${id}`, {
+      method: 'DELETE',
+    },
+  ),
   editProduct: (productDto: Product) =>
     request(`Product/${productDto.id}`, {
       method: 'PUT',
