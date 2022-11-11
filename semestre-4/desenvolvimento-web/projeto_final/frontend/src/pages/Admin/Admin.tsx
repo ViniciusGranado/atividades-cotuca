@@ -1,9 +1,17 @@
-import { Box, Card, CardMedia, CardContent, Typography, CardActions, Button, CircularProgress } from "@mui/material";
+import {
+  Box,
+  Card,
+  CardMedia,
+  CardContent,
+  Typography,
+  CardActions,
+  Button,
+  CircularProgress,
+} from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useGetAllProductsHook } from "../../hooks/useGetAllProductsHook";
-import { Product } from "../../models/models";
 
-import './Admin.css';
+import "./Admin.css";
 
 export const Admin = () => {
   const navigate = useNavigate();
@@ -11,7 +19,7 @@ export const Admin = () => {
 
   if (isProductsLoading) {
     return (
-      <Box display='flex' justifyContent='center'>
+      <Box display="flex" justifyContent="center">
         <CircularProgress />
       </Box>
     );
@@ -22,36 +30,39 @@ export const Admin = () => {
   }
 
   return (
-    <Box className='Admin'>
-    {products.map((product) => (
-      <Card sx={{ width: 150 }} key={product.id}>
-        <CardMedia
-          component="img"
-          height="140"
-          image={product.imgUrl}
-          alt={product.name}
-        />
+    <>
+      <Button variant='contained' sx={{ marginLeft: '83%' }} onClick={() => navigate('new-product')} >Novo produto</Button>
+      <Box className="Admin">
+        {products.map((product) => (
+          <Card sx={{ width: 150 }} key={product.id}>
+            <CardMedia
+              component="img"
+              height="140"
+              image={product.imgUrl}
+              alt={product.name}
+            />
 
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            {product.name}
-          </Typography>
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                {product.name}
+              </Typography>
+            </CardContent>
 
-        </CardContent>
-
-        <CardActions>
-          <Button
-            size="small"
-            variant="contained"
-            onClick={(event) => {
-              event.preventDefault();
-              navigate(String(product.id));
-            }}>
-              Editar
-            </Button>
-        </CardActions>
-      </Card>
-    ))}
-  </Box>
+            <CardActions>
+              <Button
+                size="small"
+                variant="contained"
+                onClick={(event) => {
+                  event.preventDefault();
+                  navigate(String(product.id));
+                }}
+              >
+                Editar
+              </Button>
+            </CardActions>
+          </Card>
+        ))}
+      </Box>
+    </>
   );
-}
+};

@@ -26,4 +26,9 @@ export const storeApi = {
       method: 'PUT',
       body: JSON.stringify(productDto), 
     }),
+  newProduct: (newProductDto: NewProductDto) => 
+    request('Product', {
+      method: 'POST',
+      body: JSON.stringify(newProductDto),
+    }),
 };

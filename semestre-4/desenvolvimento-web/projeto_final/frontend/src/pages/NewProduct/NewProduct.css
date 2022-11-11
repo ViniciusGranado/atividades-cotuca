@@ -1,0 +1,9 @@
+.NewProduct {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.NewProduct .ProductForm {
+  width: 100%;
+}

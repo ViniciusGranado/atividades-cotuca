@@ -1,9 +1,9 @@
-.EditProduct {
+.ProductForm {
   display: flex;
   align-items: center;
 }
 
-.EditProduct .MuiTextField-root {
+.ProductForm .MuiTextField-root {
   margin: 10px 0;
   width: 50%;
 }
