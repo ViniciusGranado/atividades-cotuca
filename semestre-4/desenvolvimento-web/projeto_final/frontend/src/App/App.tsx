@@ -42,6 +42,7 @@ export const App = () => {
           <Route path="/admin/new-product" element={<NewProduct />} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/" element={<Home />} />
         </Routes>
       </MainContainer>
