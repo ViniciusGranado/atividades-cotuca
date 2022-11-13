@@ -15,3 +15,8 @@ export interface Product {
 }
 
 export type NewProductDto = Omit<Product, 'id'>;
+
+export interface LoginDto {
+  username: string,
+  password: string,
+}

@@ -1,4 +1,4 @@
-import { NewProductDto, Product } from "../models/models";
+import { LoginDto, NewProductDto, Product } from "../models/models";
 
 const request = (
   path: RequestInfo,
@@ -23,20 +23,25 @@ const request = (
 };
 
 export const storeApi = {
-  getAllProducts: request('Product'),
-  getProductById: (id: string) => request(`Product/${id}`),
-  deleteProduct: (id: string) => request(`Product/${id}`, {
+  getAllProducts: request('product'),
+  getProductById: (id: string) => request(`product/${id}`),
+  deleteProduct: (id: string) => request(`product/${id}`, {
       method: 'DELETE',
     },
   ),
   editProduct: (productDto: Product) =>
-    request(`Product/${productDto.id}`, {
+    request(`product/${productDto.id}`, {
       method: 'PUT',
       body: JSON.stringify(productDto), 
     }),
   newProduct: (newProductDto: NewProductDto) => 
-    request('Product', {
+    request('product', {
       method: 'POST',
       body: JSON.stringify(newProductDto),
     }),
+  login: (loginDto: LoginDto) =>
+    request('user', {
+      method: 'POST',
+      body: JSON.stringify(loginDto),
+    })
 };
