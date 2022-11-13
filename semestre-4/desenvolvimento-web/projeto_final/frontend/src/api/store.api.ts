@@ -40,7 +40,7 @@ export const storeApi = {
       body: JSON.stringify(newProductDto),
     }),
   login: (loginDto: LoginDto) =>
-    request('user', {
+    request('user/login', {
       method: 'POST',
       body: JSON.stringify(loginDto),
     })

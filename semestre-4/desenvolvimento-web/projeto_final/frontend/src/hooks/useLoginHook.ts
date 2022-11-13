@@ -8,22 +8,24 @@ const initialLoginDto: LoginDto = {
   password: '',
 };
 
-export const useEditProductHook = () => {
+export const useLoginHook = () => {
   const [loginDto, setLoginDto] = useState(initialLoginDto);
 
   const {
     mutate: login,
-    isSuccess: isLogintSuccess,
-    isLoading: isLogintLoading,
-    isError: isLogintError,
+    isSuccess: isLoginSuccess,
+    isLoading: isLoginLoading,
+    isError: isLoginError,
+    error,
   } = useMutation(storeApi.login(loginDto));
 
   return {
     login,
-    isLogintSuccess,
-    isLogintLoading,
-    isLogintError,
+    isLoginSuccess,
+    isLoginLoading,
+    isLoginError,
     setLoginDto,
     loginDto,
+    error: error as TypeError,
   };
 };
