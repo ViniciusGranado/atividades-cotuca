@@ -25,7 +25,7 @@ namespace backend.Controllers
     }
 
     [HttpPost]
-    [Route("/login")]
+    [Route("login")]
     [AllowAnonymous]
     public ActionResult<dynamic> Login(LoginDto loginDto)
     {
