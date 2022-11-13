@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace backend.Controllers
 {
 
-  [Route("api/[controller]")]
+  [Route("api/product")]
   [ApiController]
   public class ProductController : Controller
   {
-    private readonly ProductsContext _context;
-    public ProductController(ProductsContext context)
+    private readonly StoreContext _context;
+    public ProductController(StoreContext context)
     {
       // construtor
       _context = context;

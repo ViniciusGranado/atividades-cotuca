@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace backend.Data
 {
-  public class ProductsContext : DbContext
+  public class StoreContext : DbContext
   {
     protected readonly IConfiguration Configuration;
-    public ProductsContext(IConfiguration configuration)
+    public StoreContext(IConfiguration configuration)
     {
       Configuration = configuration;
     }
@@ -16,5 +16,6 @@ namespace backend.Data
       options.UseMySql(Configuration.GetConnectionString("StringConexaoMySQL"), new MySqlServerVersion(new Version(8, 0, 11)));
     }
     public DbSet<Product>? Product { get; set; }
+    public DbSet<User>? User { get; set; }
   }
 }
