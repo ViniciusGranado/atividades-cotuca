@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useMutation } from "react-query";
 import { storeApi } from "../api/store.api";
-import { LoginDto } from "../models/models";
+import { LoginDto, LoginResponse } from "../models/models";
 
 const initialLoginDto: LoginDto = {
   username: '',
@@ -17,7 +17,11 @@ export const useLoginHook = () => {
     isLoading: isLoginLoading,
     isError: isLoginError,
     error,
-  } = useMutation(storeApi.login(loginDto));
+  } = useMutation<LoginResponse>(storeApi.login(loginDto), {
+    onSuccess: (data) => {
+      localStorage.setItem("user", JSON.stringify(data));
+    }
+  });
 
   return {
     login,

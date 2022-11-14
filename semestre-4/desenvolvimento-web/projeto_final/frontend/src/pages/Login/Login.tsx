@@ -1,12 +1,19 @@
 import { Button, TextField, Box, CircularProgress } from "@mui/material";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { DialogModal, DialogModalProps } from "../../components/DialogModal/DialogModal";
+import {
+  DialogModal,
+  DialogModalProps,
+} from "../../components/DialogModal/DialogModal";
 import { useLoginHook } from "../../hooks/useLoginHook";
+import { LoginResponse } from "../../models/models";
+import { getCurrentUser } from "../../utils/getCurrentUser";
 
 import "./Login.css";
 
-export const Login = () => {
+export const Login: React.FC<{
+  setNewLoggedUser: Dispatch<SetStateAction<LoginResponse | null>>;
+}> = ({ setNewLoggedUser }) => {
   const navigate = useNavigate();
   const {
     login,
@@ -30,19 +37,23 @@ export const Login = () => {
       setDialogModalConfig({
         isDialogOpen: true,
         title: "Sucesso",
-        message: 'Login realizado com sucesso!',
+        message: "Login realizado com sucesso!",
         severity: "success",
-        onClickButtonAction: () => navigate('/home'),
+        onClickButtonAction: () => {
+          const loggedUser = getCurrentUser();
+          setNewLoggedUser(loggedUser);
+          navigate("/home");
+        },
       });
     }
-  }, [isLoginSuccess, navigate])
+  }, [isLoginSuccess, navigate, setNewLoggedUser]);
 
   useEffect(() => {
     if (isLoginError) {
-      let errorMessage = 'Ocorreu um erro ao realizar o Login!';
+      let errorMessage = "Ocorreu um erro ao realizar o Login!";
 
-      if(error.message === '401') {
-        errorMessage = "Usuário ou Senha incorretos!"
+      if (error.message === "401") {
+        errorMessage = "Usuário ou Senha incorretos!";
       }
 
       setDialogModalConfig({
@@ -60,7 +71,7 @@ export const Login = () => {
       ...prev,
       isDialogOpen: false,
     }));
-  }
+  };
 
   if (isLoginLoading) {
     return (

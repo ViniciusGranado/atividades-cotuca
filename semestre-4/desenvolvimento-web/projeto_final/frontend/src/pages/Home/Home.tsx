@@ -30,7 +30,7 @@ export const Home = () => {
   return (
     <Box className="Home">
       {products.slice(0, 6).map((product) => (
-        <Card sx={{ width: 200 }}>
+        <Card sx={{ width: 200 }} key={product.id}>
           <CardMedia
             component="img"
             height="100"
