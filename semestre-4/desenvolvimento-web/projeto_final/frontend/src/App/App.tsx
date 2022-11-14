@@ -10,6 +10,8 @@ import { MainContainer } from "../components/MainContainer/MainContainer";
 import { getCurrentUser } from "../utils/getCurrentUser";
 import { Logout } from "../pages/Logout/Logout";
 import { useEffect, useState } from "react";
+import { EditProduct } from "../pages/EditProduct/EditProduct";
+import { NewProduct } from "../pages/NewProduct/NewProduct";
 
 export const App = () => {
   const [currentUser, setCurrentUser] = useState<LoginResponse | null>(null);
@@ -55,23 +57,23 @@ export const App = () => {
 
           {currentUser?.user.role === "administrator" ||
           currentUser?.user.role === "seller" ? (
-            <Route path="/admin" element={<Admin />} />
+            <Route path="/admin/:productId" element={<EditProduct />} />
           ) : (
-            <Route path="/admin" element={<Login setNewLoggedUser={setCurrentUser} />} />
+            <Route path="/admin/:productId" element={<Login setNewLoggedUser={setCurrentUser} />} />
           )}
 
           {currentUser?.user.role === "administrator" ||
           currentUser?.user.role === "seller" ? (
-            <Route path="/admin/new-product" element={<Admin />} />
+            <Route path="/admin/new-product" element={<NewProduct />} />
           ) : (
             <Route path="/admin/new-product" element={<Login setNewLoggedUser={setCurrentUser} />} />
           )}
 
           {currentUser?.user.role === "administrator" ||
           currentUser?.user.role === "seller" ? (
-            <Route path="/admin/:productId" element={<Admin />} />
+            <Route path="/admin" element={<Admin />} />
           ) : (
-            <Route path="/admin/:productId" element={<Login setNewLoggedUser={setCurrentUser} />} />
+            <Route path="/admin" element={<Login setNewLoggedUser={setCurrentUser} />} />
           )}
 
           <Route path="/login" element={<Login setNewLoggedUser={setCurrentUser} />} />

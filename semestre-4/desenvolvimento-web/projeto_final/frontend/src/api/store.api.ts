@@ -2,12 +2,13 @@ import { LoginDto, NewProductDto, Product } from "../models/models";
 
 const request = (
   path: RequestInfo,
-  options: RequestInit | undefined = undefined
+  options: RequestInit | undefined = undefined,
+  headers: HeadersInit | undefined = undefined,
 ) => {
   return async () => {
     const response = await fetch(`https://localhost:7011/api/${path}`, {
       ...options,
-      headers: { 'Content-Type': 'application/json' },
+      headers: { 'Content-Type': 'application/json', ...headers },
     });
 
     if (!response.ok) {
@@ -29,10 +30,12 @@ export const storeApi = {
       method: 'DELETE',
     },
   ),
-  editProduct: (productDto: Product) =>
+  editProduct: (productDto: Product, authorizationToken: string | undefined) =>
     request(`product/${productDto.id}`, {
       method: 'PUT',
-      body: JSON.stringify(productDto), 
+      body: JSON.stringify(productDto),
+    }, {
+      'Authorization': authorizationToken || '',
     }),
   newProduct: (newProductDto: NewProductDto) => 
     request('product', {
