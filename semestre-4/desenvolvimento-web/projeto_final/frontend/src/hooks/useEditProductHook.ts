@@ -10,6 +10,7 @@ const initialNewProductDto: Product = {
   description: '',
   imgUrl: '',
   price: 0,
+  userId: 0,
 };
 
 export const useEditProductHook = () => {

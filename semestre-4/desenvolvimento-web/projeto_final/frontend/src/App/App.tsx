@@ -35,7 +35,7 @@ export const App = () => {
     },
   ];
 
-  if (currentUser?.user.role === "administrator") {
+  if (currentUser?.user.role === "administrator" || currentUser?.user.role === "seller") {
     tabs.push({
       label: "Gerenciar Produtos",
       url: "/admin",

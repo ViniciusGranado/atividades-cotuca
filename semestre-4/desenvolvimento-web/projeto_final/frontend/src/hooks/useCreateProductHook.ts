@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useMutation } from "react-query";
 import { storeApi } from "../api/store.api";
 import { NewProductDto, Product } from "../models/models";
+import { getCurrentUser } from "../utils/getCurrentUser";
 
 const initialNewProductDto: Product = {
   id: 0,
@@ -9,10 +10,12 @@ const initialNewProductDto: Product = {
   imgUrl: "",
   name: "",
   price: 0,
+  userId: 0,
 };
 
 export const useCreateProductHook = () => {
   const [newProductDto, setNewProductDto] = useState(initialNewProductDto);
+  const user = getCurrentUser();
 
   const {
     mutate: saveNewProduct,
@@ -24,6 +27,7 @@ export const useCreateProductHook = () => {
     imgUrl: newProductDto.imgUrl,
     name: newProductDto.name,
     price: newProductDto.price,
+    userId: Number(user?.user.id) | 0,
   }))
 
   return {

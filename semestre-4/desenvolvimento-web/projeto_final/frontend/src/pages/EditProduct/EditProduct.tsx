@@ -44,7 +44,7 @@ export const EditProduct = () => {
     if (product) {
       setProductDto(product);
     }
-  }, [product]);
+  }, [product, setProductDto]);
 
   useEffect(() => {
     if (isEditProductSuccess) {

@@ -10,21 +10,31 @@ import {
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { DialogModal, DialogModalProps } from "../../components/DialogModal/DialogModal";
+import {
+  DialogModal,
+  DialogModalProps,
+} from "../../components/DialogModal/DialogModal";
 import { useDeleteProductHook } from "../../hooks/useDeleteProductHook";
 import { useGetAllProductsHook } from "../../hooks/useGetAllProductsHook";
+import { getCurrentUser } from "../../utils/getCurrentUser";
 
 import "./Admin.css";
 
 export const Admin = () => {
   const navigate = useNavigate();
   const { isProductsLoading, products } = useGetAllProductsHook();
-  const { deleteProduct, isDeleteProductLoading, isDeleteProductSuccess, isDeleteProductError } = useDeleteProductHook();
+  const {
+    deleteProduct,
+    isDeleteProductLoading,
+    isDeleteProductSuccess,
+    isDeleteProductError,
+  } = useDeleteProductHook();
+  const user = getCurrentUser();
   const [dialogModalConfig, setDialogModalConfig] = useState<DialogModalProps>({
     isDialogOpen: false,
-    title: '',
-    severity: 'success',
-    message: '',
+    title: "",
+    severity: "success",
+    message: "",
     onClickButtonAction: () => {},
   });
 
@@ -32,9 +42,9 @@ export const Admin = () => {
     if (isDeleteProductSuccess) {
       setDialogModalConfig({
         isDialogOpen: true,
-        title: 'Sucesso',
-        message: 'Produto deletado com sucesso!',
-        severity: 'success',
+        title: "Sucesso",
+        message: "Produto deletado com sucesso!",
+        severity: "success",
         onClickButtonAction: closeDialogHandler,
       });
     }
@@ -44,9 +54,9 @@ export const Admin = () => {
     if (isDeleteProductError) {
       setDialogModalConfig({
         isDialogOpen: true,
-        title: 'Erro',
-        message: 'Ocorreu um erro ao deletar o produto!',
-        severity: 'error',
+        title: "Erro",
+        message: "Ocorreu um erro ao deletar o produto!",
+        severity: "error",
         onClickButtonAction: closeDialogHandler,
       });
     }
@@ -57,9 +67,9 @@ export const Admin = () => {
       ...prev,
       isDialogOpen: false,
     }));
-  }
+  };
 
-  if (isProductsLoading  || isDeleteProductLoading) {
+  if (isProductsLoading || isDeleteProductLoading) {
     return (
       <Box display="flex" justifyContent="center">
         <CircularProgress />
@@ -73,48 +83,64 @@ export const Admin = () => {
 
   return (
     <>
-      <Button variant='contained' sx={{ marginLeft: '83%' }} onClick={() => navigate('new-product')} >Novo produto</Button>
+      <Button
+        variant="contained"
+        sx={{ marginLeft: "83%" }}
+        onClick={() => navigate("new-product")}
+      >
+        Novo produto
+      </Button>
       <Box className="Admin">
-        {products.map((product) => (
-          <Card sx={{ width: 150 }} key={product.id}>
-            <CardMedia
-              component="img"
-              height="140"
-              image={product.imgUrl}
-              alt={product.name}
-            />
+        {products.map((product) => {
+          if (
+            user?.user.role === "administrator" ||
+            (user?.user.role === "seller" &&
+              product.userId === Number(user.user.id))
+          ) {
+            return (
+              <Card sx={{ width: 150 }} key={product.id}>
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image={product.imgUrl}
+                  alt={product.name}
+                />
 
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                {product.name}
-              </Typography>
-            </CardContent>
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="div">
+                    {product.name}
+                  </Typography>
+                </CardContent>
 
-            <CardActions>
-              <Button
-                size="small"
-                variant="contained"
-                onClick={(event) => {
-                  event.preventDefault();
-                  navigate(String(product.id));
-                }}
-              >
-                Editar
-              </Button>
-              <Button
-                size="small"
-                variant="contained"
-                color='error'
-                onClick={(event) => {
-                  event.preventDefault();
-                  deleteProduct(String(product.id));
-                }}
-              >
-                Deletar
-              </Button>
-            </CardActions>
-          </Card>
-        ))}
+                <CardActions>
+                  <Button
+                    size="small"
+                    variant="contained"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      navigate(String(product.id));
+                    }}
+                  >
+                    Editar
+                  </Button>
+                  <Button
+                    size="small"
+                    variant="contained"
+                    color="error"
+                    onClick={(event) => {
+                      event.preventDefault();
+                      deleteProduct(String(product.id));
+                    }}
+                  >
+                    Deletar
+                  </Button>
+                </CardActions>
+              </Card>
+            );
+          }
+
+          return null;
+        })}
       </Box>
       <DialogModal {...dialogModalConfig} />
     </>
